@@ -1,10 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import CancelIcon from './CancelIcon'
+import SignUpButton from './SignUpButton'
 
 export default function WelcomePage() {
   return (
     <>
       <Main>
+        <SignUp>
+          <div className="CancelHolder">
+            <div className='cancelIcon'>
+              <CancelIcon />
+            </div>
+            <img src='./XLogo.png' />
+          </div>
+          <SignUpContainer>
+            <h1>Create your account</h1>
+            <Input type="text" placeholder='Name' />
+            <Input type="text" placeholder='Email' />
+            <h5>Date of birth</h5>
+            <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
+            <Input $date type="date" />
+            <Button $next>Next</Button>
+          </SignUpContainer>
+        </SignUp>
         <WCContainer>
           <LeftContainer>
             <img src='./XLogo.png' />
@@ -22,7 +41,7 @@ export default function WelcomePage() {
                 <p>or</p>
                 <hr />
               </HRcontainer>
-              <Button $second>Create account</Button>
+              <SignUpButton />
               <p>By signing up, you agree to the <a href="https://twitter.com/en/tos" target='_blank'>Terms of Service</a> and <a href="https://twitter.com/en/privacy" target='_blank'>Privacy Policy</a>, including <a href="https://help.twitter.com/en/rules-and-policies/x-cookies" target='_blank'>Cookie Use</a>.</p>
               <h3>Already have an account?</h3>
               <Button $third>Sign in</Button>
@@ -164,13 +183,14 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 35px;
+  height: ${props => props.$next ? "55px" : "35px"};
   border-radius: 100px;
-  border: ${props => props.$second ? "none" : "1px solid #a5a5a5"};
+  border: ${props => props.$next ? "none" : "1px solid #a5a5a5"};
   margin: 5px;
+  margin-top: ${props => props.$next ? "80px" : "5px"};
   margin-left: 0px;
-  background-color: ${props => props.$second ? "#1D9BF0" : "white"};
-  color: ${props => props.$second ? "white" : props.$third ? "#1D9BF0" : "black"};
+  background-color: ${props.$next ? "#7e7e7e" : "white"};
+  color: ${props => props.$third ? "#1D9BF0" : props.$next ? "white" : "black"};
   font-size: 20px;
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
