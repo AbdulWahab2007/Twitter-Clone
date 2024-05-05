@@ -202,15 +202,15 @@ all: unset;
 display: flex;
 justify-content: center;
 align-items: center;
-width: 100%;
-height: ${props => props.$next ? "55px" : "35px"};
+width: ${props => props.$post ? "70%" : "100%"};
+height: ${props => props.$next ? "55px" : props.$post ? "55px" : "35px"};
 border-radius: 100px;
-border: ${props => props.$next ? "none" : props.$signUp ? "none" : "1px solid #a5a5a5"};
+border: ${props => props.$next ? "none" : props.$signUp ? "none" : props.$post ? "none" : "1px solid #a5a5a5"};
 margin: 5px;
-margin-top: ${props => props.$next ? "60px" : props.$SignInNext ? "25px" : "5px"};
-margin-left: 0px;
-background-color: ${props => props.$next ? "#7e7e7e" : props.$SignInNext ? "black" : props.$signUp ? "#1D9BF0" : "white"};
-color: ${props => props.$next ? "white" : props.$SignInNext ? "white" : props.$signUp ? "white" : props.$signIn ? "#1D9BF0" : "black"};
+margin-top: ${props => props.$next ? "60px" : props.$SignInNext ? "25px" : props.$post ? "20px" : "5px"};
+margin-left: ${props => props.$post ? "10px" : "0px"};
+background-color: ${props => props.$next ? "#7e7e7e" : props.$SignInNext ? "black" : props.$signUp ? "#1D9BF0" : props.$post ? "#1D9BF0" : "white"};
+color: ${props => props.$next ? "white" : props.$SignInNext ? "white" : props.$signUp ? "white" : props.$post ? "white" : props.$signIn ? "#1D9BF0" : "black"};
 font-size: 20px;
 font-family: "Bebas Neue", sans-serif;
 font-weight: 400;
@@ -223,6 +223,6 @@ font-style: normal;
   }
 &:hover{
   cursor: pointer;
-  background-color: ${props => props.$signUp ? "#0f89da" : props.$SignInNext ? "#242424" : props.$next ? "#979797" : props.$signIn ? "#e5eff5" : "#eaeaea"};
+  background-color: ${props => props.$signUp ? "#0f89da" : props.$post ? "#0f89da" : props.$SignInNext ? "#242424" : props.$next ? "#979797" : props.$signIn ? "#e5eff5" : "#eaeaea"};
 }
 `
