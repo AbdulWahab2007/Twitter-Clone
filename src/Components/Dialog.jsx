@@ -202,7 +202,7 @@ all: unset;
 display: flex;
 justify-content: center;
 align-items: center;
-width: ${props => props.$post ? "70%" : "100%"};
+width: ${props => props.$post ? "80%" : "100%"};
 height: ${props => props.$next ? "55px" : props.$post ? "55px" : "35px"};
 border-radius: 100px;
 border: ${props => props.$next ? "none" : props.$signUp ? "none" : props.$post ? "none" : "1px solid #a5a5a5"};
