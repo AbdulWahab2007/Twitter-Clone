@@ -1,30 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from './Dialog'
-import Popover from './PopoverDemo'
+import SideBar from './SideBar'
 
 export default function MainSection() {
     return (
         <>
             <Main>
-                <SideBar>
-                    <Anchor><img className='XLogo' src="./public/TwitterLogo.svg" alt="" /></Anchor>
-                    <Anchor><a href='/home'><img src='./public/Home.svg' alt="" />Home</a></Anchor>
-                    <Anchor><a href='/explore'><img src='./public/Explore.svg' alt="" />Explore</a></Anchor>
-                    <Anchor><a href='/notifications'><img src='./public/Notifications.svg' alt="" />Notifications</a></Anchor>
-                    <Anchor><a href='/messages'><img src='./public/Messages.svg' alt="" />Messages</a></Anchor>
-                    <Anchor><a href='/grok'><img src='./public/Grok.svg' alt="" />Grok</a></Anchor>
-                    <Anchor><a href='/lists'><img src='./public/Lists.svg' alt="" />Lists</a></Anchor>
-                    <Anchor><a href='/communities'><img src='./public/Communities.svg' alt="" />Communities</a></Anchor>
-                    <Anchor><a href='/premium'><img src='./public/Premium.svg' alt="" />Premium</a></Anchor>
-                    <Anchor><a href='/profile'><img src='./public/Profile.svg' alt="" />Profile</a></Anchor>
-                    <Anchor><a href='/more'><img src='./public/More.svg' alt="" />More</a></Anchor>
-                    <Button $post>POST</Button>
-                    <Popover/>
-                    {/* <ProfileOpts><img className='DP' src='./public/UserDP.svg' alt=''/>
-                    <div className="Names"><h3>Demo Name <img className='lock' src='./public/Lock.svg'/></h3> <p>@DemoUsername0011</p></div>
-                    <img src='./public/More.svg' alt="" /></ProfileOpts> */}
-                </SideBar>
+                <SideBar />
             </Main>
         </>
     )
@@ -35,107 +17,3 @@ const Main = styled.div`
     width: 100%;
     height: 100vh;
 `
-
-const SideBar = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    height: 100vh;
-    margin-left: 100px;
-    border-right: 1px solid #c4c4c4;
-`
-
-const Anchor = styled.div`
-    margin-left: 50px;
-    margin: 12px;
-    font-size: 20px;
-    a{
-        text-align: center;
-        color: black;
-        text-decoration: none;
-        height: 30px;
-        padding: 15px;
-        font-family: "Montserrat", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-        border-radius: 100px;
-    }
-    a:hover{
-        background-color: #f1f1f1;
-        border-radius: 50px;
-        cursor: pointer;
-    }
-    a:focus{
-    font-weight: 700;
-  }
-    img{
-    text-align: center;
-    margin-bottom: -4px;
-    margin-right: 10px;
-    width: 25px;
-    height: 25px;
-  }
-  .XLogo{
-    padding: 15px;
-    margin-bottom: -20px;
-    border-radius: 100%;
-  }
-  .XLogo:hover{
-    background-color: #f1f1f1;
-    border-radius: 100%;
-  }
-`
-
-// const ProfileOpts = styled.div`
-//     display: flex;
-//     justify-content: flex-start;
-//     align-items: center;
-//     border-radius: 80px;
-//     width: 93%;
-//     height: 65px;
-//     margin: 35px 0px 0px 10px;
-//     &:hover{
-//     background-color: #f1f1f1;
-//     cursor: pointer;
-//     }
-//     .DP{
-//         width: 45px;
-//         height: 45px;
-//         margin: 0px 10px 0px 10px;
-//     }
-//     .Names{
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         h3{
-//             display: flex;
-//             margin: 0px;
-//             font-size: 18px;
-//             font-family: "Roboto Slab", serif;
-//             font-optical-sizing: auto;
-//             font-weight: 600;
-//             font-style: normal;
-//         }
-//         p{
-//             margin: 0px;
-//             font-size: 14px;
-//             font-family: "Montserrat", sans-serif;
-//             font-optical-sizing: auto;
-//             font-weight: 500;
-//             font-style: normal;
-//             color: #565656;
-//         }
-//         .lock{
-//             margin: 0px 0px 0px 5px;
-//             width: 20px;
-//             height: 20px;
-//         }
-//     }
-//     img{
-//     text-align: center;
-//     margin: 0px 0px -4px 10px;
-//     width: 22px;
-//     height: 22px;
-//   }
-// `
