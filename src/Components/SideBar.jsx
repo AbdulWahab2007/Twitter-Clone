@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from './Dialog'
-import Popover from './PopoverDemo'
+import Popover from './ProfilePopover'
 
 export default function SideBar() {
   return (

@@ -31,7 +31,7 @@ const PopoverTag = () => (
   </Popover.Root>
 );
 
-const IconButton = styled.button`
+export const IconButton = styled.button`
    font-family: inherit;
    border-radius: 80px;
    height: 65px;
@@ -52,7 +52,7 @@ const IconButton = styled.button`
     .DP{
         width: 45px;
         height: 45px;
-        margin: 0px 10px 0px 20px;
+        margin: 0px 10px 0px 0px;
     }
     .Names{
         display: flex;
