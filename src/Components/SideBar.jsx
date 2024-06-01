@@ -31,7 +31,7 @@ const SideBarContainer = styled.div`
     width: 20%;
     height: 100vh;
     margin-left: 100px;
-    border-right: 1px solid #c4c4c4;
+    border-right: 1px solid #e7e7e7;
 `
 
 const Anchor = styled.div`

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { Button } from './Dialog'
+import PostCard from './PostCard'
 
 export default function MidSection() {
 
@@ -23,12 +25,26 @@ export default function MidSection() {
                 <PostSection>
                     <div className="top">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
-                        <div className="topright">
-                            <textarea name="" id=""></textarea>
+                        <textarea placeholder='What is happening?!' name="" id=""></textarea>
+                    </div>
+                    <hr />
+                    <div className="bottom">
+                        <div className="ImgContainer">
+                            <span><img className='TextOpt' src="/src/Components/Icons/Image.svg" alt="" /></span>
+                            <span><img className='TextOpt' src="/src/Components/Icons/Gif.svg" alt="" /></span>
+                            <span><img className='TextOpt' src="/src/Components/Icons/Poll.svg" alt="" /></span>
+                            <span><img className='TextOpt' src="/src/Components/Icons/Emoji.svg" alt="" /></span>
+                            <span><img className='TextOpt' src="/src/Components/Icons/Schedule.svg" alt="" /></span>
+                            <span><img className='TextOpt' src="/src/Components/Icons/Location.svg" alt="" /></span>
+                        </div>
+                        <div className="btncontainer">
+                            <Button $post1>Post</Button>
                         </div>
                     </div>
-                    <div className="bottom"></div>
                 </PostSection>
+                <div className="PostContainer">
+                    <PostCard/>
+                </div>
             </Container>
         </>
     )
@@ -37,17 +53,23 @@ export default function MidSection() {
 const Container = styled.div`
     width: 40%;
     height: 100vh;
-    border-right: 1px solid #c4c4c4;
+    border-right: 1px solid #e7e7e7;
     display: flex;
     flex-direction: column;
     align-items: center;
+    .PostContainer{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+    }
 `
 
 const TopCategories = styled.div`
     width: 100%;
     height: 55px;
     display: flex;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid #e7e7e7;
     .Category{
         width: 50%;
         height: 55px;
@@ -77,38 +99,66 @@ const PostSection = styled.div`
     flex-direction: column;
     width: 100%;
     height: 150px;
-    background-color: aqua;
+    border-bottom: 1px solid #e7e7e7;
     .top{
         display: flex;
+        align-items: center;
         width: 100%;
         height: 95px;
-        background-color: #4aaa8a;
     }
     .DP{
         width: 45px;
         height: 45px;
-        margin: 22px 0px 0px 10px;
-    }
-    .topright{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 92%;
-        background-color: bisque;
+        margin: -10px 0px 0px 10px;
     }
     textarea{
+        display: flex;
+        width: 85%;
         border: 0px;
         font-size: 25px;
         height: 60px;
-        margin: 0px 0px 0px 5px;
+        margin: 20px 0px 0px 15px;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
     }
     textarea:focus{
         outline: none;
     }
-    .botom{
+    hr{
+      width: 85%;
+      height: 1px;
+      background-color: #e7e7e7;
+      border: 0px;
+    }
+    .bottom{
         display: flex;
+        align-items: center;
         width: 100%;
         height: 55px;
-        background-color: aquamarine;
+    }
+    .ImgContainer{
+        display: flex;
+        margin-left: 45px;
+        width: 75%;
+    }
+    span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+    }
+    span:hover{
+        cursor: pointer;
+        border-radius: 60px;
+        background-color: #e7fdfd;
+    }
+    .TextOpt{
+        width: 25px;
+    }
+    .btncontainer{
+        width: 25%;
     }
 `
