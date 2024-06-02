@@ -5,22 +5,14 @@ import PostCard from './PostCard'
 
 export default function MidSection() {
 
-    const [isActive1, SetisActive1] = useState(true)
-    const [isActive2, SetisActive2] = useState(false)
-    const handleclick1 = () => {
-        SetisActive1(true)
-        SetisActive2(false)
-    }
-    const handleclick2 = () => {
-        SetisActive1(false)
-        SetisActive2(true)
-    }
+    const [isActive, SetisActive] = useState(0);
+
     return (
         <>
             <Container>
                 <TopCategories>
-                    <div onClick={handleclick1} className={isActive1 ? "Category active" : "Category"}>For You</div>
-                    <div onClick={handleclick2} className={isActive2 ? "Category active" : "Category"}>Following</div>
+                    <button onClick={() => SetisActive(0)} className={isActive == 0 ? "Category active" : "Category"}>For You</button>
+                    <button onClick={() => SetisActive(1)} className={isActive == 1 ? "Category active" : "Category"}>Following</button>
                 </TopCategories>
                 <PostSection>
                     <div className="top">
@@ -43,7 +35,10 @@ export default function MidSection() {
                     </div>
                 </PostSection>
                 <div className="PostContainer">
-                    <PostCard/>
+                    <PostCard text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt. Doloremque facilis tempore laboriosam possimus perspiciatis excepturi, aut earum quos nulla eum!"/>
+                    <PostCard text = "Lorem ipsum dolor sit amet consectetur adipisicing elit."/>
+                    <PostCard text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt."/>
+                    <PostCard text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi ad explicabo excepturi? Tempora consectetur eum perferendis assumenda voluptatem nihil provident corrupti, soluta unde molestias odit harum aliquid quo amet vitae ut quaerat fugiat doloremque rerum qui veritatis possimus reprehenderit modi? Tenetur adipisci expedita autem cum veritatis iste quidem ipsa, modi soluta ipsum quia dolores, blanditiis ad amet magni cumque provident deleniti itaque ab quo alias numquam porro. Illo, est consequatur quaerat aut dolores et qui vitae ea omnis alias exercitationem nobis reiciendis id amet facere, autem quo debitis pariatur facilis. Eos architecto earum est debitis doloremque tempora minus omnis. Saepe, sit fugiat cumque illo, vel omnis neque temporibus voluptate sint eaque placeat consequuntur mollitia, ipsum et. Facilis praesentium quasi adipisci unde, minima harum dicta vel laborum quis ab facere omnis consequuntur quisquam maxime distinctio eveniet commodi sint ea libero excepturi beatae doloremque nobis dolorem eaque. Fugiat nihil perferendis sapiente."/>
                 </div>
             </Container>
         </>
@@ -52,6 +47,7 @@ export default function MidSection() {
 
 const Container = styled.div`
     width: 40%;
+    margin-left: 395px;
     height: 100vh;
     border-right: 1px solid #e7e7e7;
     display: flex;
@@ -73,6 +69,7 @@ const TopCategories = styled.div`
     .Category{
         width: 50%;
         height: 55px;
+        border: 0px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -82,6 +79,7 @@ const TopCategories = styled.div`
         font-style: normal;
         color: #536471;
         user-select: none;
+        background-color: white;
     }
     .Category:hover{
         background-color: #f1f1f1;
@@ -98,13 +96,11 @@ const PostSection = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 150px;
     border-bottom: 1px solid #e7e7e7;
     .top{
         display: flex;
         align-items: center;
         width: 100%;
-        height: 95px;
     }
     .DP{
         width: 45px;

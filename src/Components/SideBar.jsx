@@ -28,6 +28,7 @@ export default function SideBar() {
 const SideBarContainer = styled.div`
     display: flex;
     flex-direction: column;
+    position: fixed;
     width: 20%;
     height: 100vh;
     margin-left: 100px;
