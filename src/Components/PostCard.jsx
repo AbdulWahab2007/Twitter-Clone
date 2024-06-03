@@ -26,8 +26,8 @@ export default function PostCard(props) {
               <span className='IconContainer'><span className="material-symbols-outlined">bar_chart</span><p>989k</p></span>
             </div>
             <div className="right">
-              <span className='RightIconContainer'><span className="material-symbols-outlined">bookmark</span><p></p></span>
-              <span className='RightIconContainer'><span className="material-symbols-outlined">upload</span><p></p></span>
+              <span className='RightIconContainer'><span className="material-symbols-outlined">bookmark</span></span>
+              <span className='RightIconContainer'><span className="material-symbols-outlined">upload</span></span>
             </div>
           </PostOpts>
         </Content>
@@ -40,8 +40,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   margin-top: 2px;
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
+  border: 1px solid #e7e7e7;
 `
 
 const ProfileContainer = styled.div`
@@ -54,6 +53,9 @@ const ProfileContainer = styled.div`
         height: 45px;
         margin: 8px 0px 10px 0px;
     }
+  .DP:hover{
+    cursor: pointer;
+  }
 `
 
 const Content = styled.div`
@@ -75,6 +77,9 @@ const Info = styled.div`
       font-weight: 600;
       font-style: normal;
   }
+  h3:hover{
+    cursor: default;
+  }
   .InfoP{
      margin: 0px 0px 0px 10px;
      font-size: 14px;
@@ -83,6 +88,9 @@ const Info = styled.div`
      font-weight: 500;
      font-style: normal;
      color: #565656;
+  }
+  .InfoP:hover{
+    cursor: default;
   }
   .dot{
     margin: 0px -5px 0px 5px;
@@ -98,6 +106,9 @@ const PostText = styled.div`
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+  }
+  .text:hover{
+    cursor: default;
   }
 `
 

@@ -13,10 +13,16 @@ const PopoverTag = () => (
     <GlobalCSS />
     <Popover.Trigger asChild>
       <IconButton className="IconButton" aria-label="Update dimensions">
-
-        <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
-        <div className="Names"><h3>Demo Name <img className='lock' src='/src/Components/Icons/Lock.svg' /></h3> <p>@DemoUsername0011</p></div>
-        <img src='/src/Components/Icons/More.svg' alt="" />
+        <div className="left">
+          <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+          <div className="Names">
+            <h3>Demo Name <img className='lock' src='/src/Components/Icons/Lock.svg' /></h3>
+            <p>@DemoUsername0011</p>
+          </div>
+        </div>
+        <div className="right">
+          <img src='/src/Components/Icons/More.svg' alt="" />
+        </div>
 
       </IconButton>
     </Popover.Trigger>
@@ -33,21 +39,31 @@ const PopoverTag = () => (
 
 export const IconButton = styled.button`
    font-family: inherit;
-   border-radius: 80px;
+   border-radius: ${props => props.$suggestion ? "0px" : "80px"};
    height: 65px;
    width: 100%;
-   margin: 35px 0px 0px -20px;
+   margin-top: ${props => props.$suggestion ? "0px" : "35px"};
+   margin-left: ${props => props.$suggestion ? "0px" : "-10px"};
+   margin-right: 0px;
+   margin-bottom: 0px;
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: space-between;
    border: 0px;
    background-color: white;
    &:focus{
      box-shadow: 0 0 0 2px rgb(138, 138, 138);
    }
    &:hover{
-    background-color: #f1f1f1;
+    background-color: ${props => props.$suggestion ? "#f9f9f9" : "#f1f1f1"};
     cursor: pointer;
+    }
+    .left{
+      display: flex;
+    }
+    .right{
+      display: flex;
+      width: 25%;
     }
     .DP{
         width: 45px;
@@ -66,6 +82,9 @@ export const IconButton = styled.button`
             font-optical-sizing: auto;
             font-weight: 600;
             font-style: normal;
+        }
+        h3:hover{
+          text-decoration: ${props => props.$suggestion ? "underline" : "none"};
         }
         p{
             margin: 0px;

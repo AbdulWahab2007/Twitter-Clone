@@ -18,7 +18,7 @@ export default function SideBar() {
         <Anchor><a href='/premium'><img src='/src/Components/Icons/Premium.svg' alt="" />Premium</a></Anchor>
         <Anchor><a href='/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</a></Anchor>
         <Anchor><a href='/more'><img src='/src/Components/Icons/More.svg' alt="" />More</a></Anchor>
-        <Button $post>POST</Button>
+        <Button $post>Post</Button>
         <Popover />
       </SideBarContainer>
     </>
@@ -27,8 +27,8 @@ export default function SideBar() {
 
 const SideBarContainer = styled.div`
     display: flex;
-    flex-direction: column;
     position: fixed;
+    flex-direction: column;
     width: 20%;
     height: 100vh;
     margin-left: 100px;

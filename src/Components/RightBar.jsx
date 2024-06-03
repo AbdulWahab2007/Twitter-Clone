@@ -1,0 +1,109 @@
+import React from 'react'
+import styled from 'styled-components'
+import { Button } from './Dialog'
+import ProfileSuggestion from './ProfileSuggestion'
+
+export default function RightBar() {
+    return (
+        <>
+            <Container>
+                <Premium>
+                    <h3>Subscribe to Premium</h3>
+                    <p>Subscribe to unlock new features and if eligible, receive a share of ads revenue.</p>
+                    <div className="btnContainer">
+                        <Button $SignInNext>Subscribe</Button>
+                    </div>
+                </Premium>
+                <FollowSuggestions>
+                    <div className="top">
+                        <h3>Who to Follow</h3>
+                    </div>
+                    <ProfileSuggestion />
+                    <ProfileSuggestion />
+                    <ProfileSuggestion />
+                    <div className="bottom">
+                        <a href="">Show more</a>
+                    </div>
+                </FollowSuggestions>
+            </Container>
+        </>
+    )
+}
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    right: -65px;
+    width: 40%;
+    height: 100vh;
+`
+
+const Premium = styled.div`
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        height: 200px;
+        border: 1px solid #e7e7e7;
+        margin: 55px 0px 0px 0px;
+        border-radius: 20px;
+        h3{
+            margin: 30px 0px 0px 20px;
+            font-size: 24px;
+            font-family: "Roboto Slab", serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+        }
+        p{
+            margin: 15px 0px 0px 20px;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+        .btnContainer{
+            width: 30%;
+            margin: -10px 0px 0px 20px;
+        }
+`
+
+const FollowSuggestions = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    border: 1px solid #e7e7e7;
+    margin: 55px 0px 0px 0px;
+    border-radius: 20px;
+    .top{
+        display: flex;
+        align-items: center;
+    }
+    h3{
+        margin: 15px 0px 15px 10px;
+        font-size: 22px;
+        font-family: "Roboto Slab", serif;
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+    }
+    .bottom{
+        display: flex;
+        align-items: center;
+        border-radius: 0px 0px 20px 20px;
+    }
+    .bottom:hover{
+        background-color: #f9f9f9;
+    }
+    a{
+        margin: 15px 0px 25px 10px;
+        text-decoration: none;
+        color: #1D9BF0;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+
+    }
+`

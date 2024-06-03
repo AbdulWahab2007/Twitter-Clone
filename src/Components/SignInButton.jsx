@@ -20,7 +20,7 @@ const SignInButton = () => (
 
                 <styles.Sign>
                     <div className="TopBar">
-                        <img src='./XLogo.png' />
+                        <img src='/src/Components/Icons/XLogo.png' />
                     </div>
                     <styles.SignInContainer>
                         <h1>Sign in to X</h1>

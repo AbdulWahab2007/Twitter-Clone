@@ -19,7 +19,7 @@ const SignUpButton = () => (
 
         <styles.Sign>
           <div className="TopBar">
-            <img src='./XLogo.png' />
+            <img src='/src/Components/Icons/XLogo.png' />
           </div>
           <styles.SignUpContainer>
             <h1>Create your account</h1>

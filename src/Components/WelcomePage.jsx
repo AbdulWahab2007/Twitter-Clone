@@ -10,7 +10,7 @@ export default function WelcomePage() {
       <Main>
         <WCContainer>
           <LeftContainer>
-            <img src='./XLogo.png' />
+            <img src='/src/Components/Icons/XLogo.png' />
           </LeftContainer>
           <RightContainer>
             <h1>Happening now</h1>

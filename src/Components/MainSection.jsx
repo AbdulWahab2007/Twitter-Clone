@@ -2,13 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import SideBar from './SideBar'
 import MidSection from './MidSection'
+import RightBar from './RightBar'
 
 export default function MainSection() {
     return (
         <>
             <Main>
                 <SideBar />
-                <MidSection/>
+                <MidSection />
+                <RightBar />
             </Main>
         </>
     )
