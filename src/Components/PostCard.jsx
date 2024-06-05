@@ -40,7 +40,12 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   margin-top: 2px;
-  border: 1px solid #e7e7e7;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  &:hover{
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
 `
 
 const ProfileContainer = styled.div`
@@ -78,7 +83,8 @@ const Info = styled.div`
       font-style: normal;
   }
   h3:hover{
-    cursor: default;
+    cursor: pointer;
+    text-decoration: underline;
   }
   .InfoP{
      margin: 0px 0px 0px 10px;
@@ -90,7 +96,7 @@ const Info = styled.div`
      color: #565656;
   }
   .InfoP:hover{
-    cursor: default;
+    cursor: pointer;
   }
   .dot{
     margin: 0px -5px 0px 5px;
@@ -108,7 +114,7 @@ const PostText = styled.div`
     font-style: normal;
   }
   .text:hover{
-    cursor: default;
+    cursor: pointer;
   }
 `
 

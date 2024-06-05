@@ -202,7 +202,7 @@ all: unset;
 display: flex;
 justify-content: center;
 align-items: center;
-width: ${props => props.$post ? "80%" : props.$follow ? "100%" : props.$post1 ? "80%px" : "100%"};
+width: ${props => props.$post ? "80%" : props.$follow ? "100%" : props.$post1 ? "80%" : "100%"};
 height: ${props => props.$next ? "55px" : props.$follow ? "40px" : props.$post ? "55px" : props.$post1 ? "35px" : "35px"};
 border-radius: 100px;
 border: ${props => props.$next ? "none" : props.$signUp ? "none" : props.$post ? "none" : props.$post1 ? "none" : "1px solid #a5a5a5"};

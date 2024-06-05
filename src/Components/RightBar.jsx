@@ -35,15 +35,15 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     position: fixed;
-    right: -65px;
-    width: 40%;
+    right: 20px;
+    width: 30%;
     height: 100vh;
 `
 
 const Premium = styled.div`
         display: flex;
         flex-direction: column;
-        width: 70%;
+        width: 80%;
         height: 200px;
         border: 1px solid #e7e7e7;
         margin: 55px 0px 0px 0px;
@@ -72,7 +72,7 @@ const Premium = styled.div`
 const FollowSuggestions = styled.div`
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 80%;
     border: 1px solid #e7e7e7;
     margin: 55px 0px 0px 0px;
     border-radius: 20px;

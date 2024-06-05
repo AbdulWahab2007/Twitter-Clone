@@ -48,7 +48,7 @@ export default function MidSection() {
 const Container = styled.div`
     width: 40%;
     height: 100vh;
-    margin-left: 405px;
+    margin-left: 397px;
     border-right: 1px solid #e7e7e7;
     display: flex;
     flex-direction: column;
