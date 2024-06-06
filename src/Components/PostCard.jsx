@@ -1,36 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function PostCard(props) {
   return (
     <>
       <Container>
-        <ProfileContainer>
-          <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
-        </ProfileContainer>
-        <Content>
-          <Info>
-            <h3>Demo Name</h3>
-            <p className='InfoP'>@DemoUsername0011</p>
-            <p className='dot'>·</p>
-            <p className='InfoP'>19h</p>
-          </Info>
-          <PostText>
-            <p className='text'>{props.text}</p>
-          </PostText>
-          <PostOpts>
-            <div className="left">
-              <span className='IconContainer'><span className="material-symbols-outlined">chat_bubble</span><p>120</p></span>
-              <span className='RepostIconContainer'><span className="material-symbols-outlined repost">autorenew</span><p>3.7k</p></span>
-              <span className='LikeIconContainer'><span className="material-symbols-outlined like">favorite</span><p>17k</p></span>
-              <span className='IconContainer'><span className="material-symbols-outlined">bar_chart</span><p>989k</p></span>
-            </div>
-            <div className="right">
-              <span className='RightIconContainer'><span className="material-symbols-outlined">bookmark</span></span>
-              <span className='RightIconContainer'><span className="material-symbols-outlined">upload</span></span>
-            </div>
-          </PostOpts>
-        </Content>
+        <Link className="Replies" to="/replies">
+          <ProfileContainer>
+            <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+          </ProfileContainer>
+          <Content>
+            <Info>
+              <h3>Demo Name</h3>
+              <p className='InfoP'>@DemoUsername0011</p>
+              <p className='dot'>·</p>
+              <p className='InfoP'>19h</p>
+            </Info>
+            <PostText>
+              <p className='text'>{props.text}</p>
+            </PostText>
+            <PostOpts>
+              <div className="left">
+                <span className='IconContainer'><span className="material-symbols-outlined">chat_bubble</span><p>120</p></span>
+                <span className='RepostIconContainer'><span className="material-symbols-outlined repost">autorenew</span><p>3.7k</p></span>
+                <span className='LikeIconContainer'><span className="material-symbols-outlined like">favorite</span><p>17k</p></span>
+                <span className='IconContainer'><span className="material-symbols-outlined">bar_chart</span><p>989k</p></span>
+              </div>
+              <div className="right">
+                <span className='RightIconContainer'><span className="material-symbols-outlined">bookmark</span></span>
+                <span className='RightIconContainer'><span className="material-symbols-outlined">upload</span></span>
+              </div>
+            </PostOpts>
+          </Content>
+        </Link>
       </Container>
     </>
   )
@@ -45,6 +49,12 @@ const Container = styled.div`
   &:hover{
     background-color: #f1f1f1;
     cursor: pointer;
+  }
+  .Replies{
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: black;
   }
 `
 

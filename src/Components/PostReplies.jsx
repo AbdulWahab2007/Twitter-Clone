@@ -2,13 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import PostCard from './PostCard'
 import { Button } from './Dialog'
+import { Link } from 'react-router-dom'
 
 export default function PostReplies() {
     return (
         <>
             <Container>
                 <div className="top">
-                    <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
+                    <Link className="Home" to="/">
+                        <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
+                    </Link>
                     <h3 className='heading'>Post</h3>
                 </div>
                 <PostCard text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sapiente voluptas quae nobis culpa velit delectus sit nulla accusamus dolorum ex, ducimus, veritatis iusto ratione porro! Vitae ipsum sint nostrum?"} />
@@ -19,8 +22,8 @@ export default function PostReplies() {
                         <Button $post1>Reply</Button>
                     </div>
                 </Reply>
-                <PostCard text={"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, esse!"}/> 
-            </Container>
+                <PostCard text={"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, esse!"} />
+            </Container >
         </>
     )
 }
@@ -38,6 +41,9 @@ const Container = styled.div`
         align-items: center;
         width: 100%;
         margin: 5px 0px 10px 0px;
+    }
+    .Home{
+        text-decoration: none;
     }
     .heading{
         margin: 0px 0px 0px 30px;

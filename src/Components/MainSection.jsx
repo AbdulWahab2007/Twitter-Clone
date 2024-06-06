@@ -4,16 +4,31 @@ import SideBar from './SideBar'
 import MidSection from './MidSection'
 import RightBar from './RightBar'
 import PostReplies from './PostReplies'
+import {
+    BrowserRouter as Router,
+    BrowserRouter,
+    Route,
+    Routes,
+    Link,
+} from "react-router-dom";
 
 export default function MainSection() {
     return (
         <>
-            <Main>
-                <SideBar />
-                {/* <MidSection /> */}
-                <PostReplies/>
-                <RightBar />
-            </Main>
+            <BrowserRouter>
+                <Main>
+                    <SideBar />
+                    <Routes>
+                        <Route path="/" element={<MidSection />}>
+                        </Route>
+                        <Route path="/replies" element={<PostReplies />}>
+                        </Route>
+                        {/* <MidSection /> */}
+                        {/* <PostReplies /> */}
+                    </Routes>
+                    <RightBar />
+                </Main>
+            </BrowserRouter>
         </>
     )
 }
