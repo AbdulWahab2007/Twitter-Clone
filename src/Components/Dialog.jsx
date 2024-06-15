@@ -121,9 +121,11 @@ export const SignUpContainer = styled.div`
         pointer-events: none;
         color: #666;
         position: absolute;
-        margin: 37px;
+        margin: 28px;
         margin-left: 10px;
-        font-size: 20px;
+        font-size: 15px;
+        margin-top: 6px;
+        padding: 3px;
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
@@ -155,9 +157,11 @@ export const SignInContainer = styled.div`
         pointer-events: none;
         color: #666;
         position: absolute;
-        margin: 37px;
+        margin: 28px;
         margin-left: 10px;
-        font-size: 20px;
+        font-size: 15px;
+        margin-top: 6px;
+        padding: 3px;
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
@@ -173,8 +177,8 @@ export const Input = styled.input`
       background-color: ${props => props.$date ? "#61c0ff" : "white"};
       color: ${props => props.$date ? "white" : "black"};
       width: 90%;
-      height: 60px;
-      margin: 17px 0px 17px 0px;
+      height: 45px;
+      margin: 17px 0px 7px 0px;
       font-size: 20px;
       padding-left: 10px;
       border-radius: 5px;
@@ -207,7 +211,7 @@ height: ${props => props.$next ? "55px" : props.$follow ? "40px" : props.$post ?
 border-radius: 100px;
 border: ${props => props.$next ? "none" : props.$signUp ? "none" : props.$post ? "none" : props.$post1 ? "none" : "1px solid #a5a5a5"};
 margin: 5px;
-margin-top: ${props => props.$next ? "60px" : props.$SignInNext ? "25px" : props.$follow ? "0px" : "5px"};
+margin-top: ${props => props.$next ? "40px" : props.$SignInNext ? "25px" : props.$follow ? "0px" : "5px"};
 margin-left: ${props => props.$post ? "10px" : "0px"};
 background-color: ${props => props.$next ? "#7e7e7e" : props.$SignInNext ? "black" : props.$follow ? "black" : props.$signUp ? "#1D9BF0" : props.$post ? "#1D9BF0" : props.$post1 ? "#1D9BF0" : "white"};
 color: ${props => props.$next ? "white" : props.$SignInNext ? "white" : props.$follow ? "white" : props.$signUp ? "white" : props.$post ? "white" : props.$post1 ? "white" : props.$signIn ? "#1D9BF0" : "black"};

@@ -8,8 +8,8 @@ export default function App() {
   return (
     <>
     <GlobalCSS/>
-    {/* {<WelcomePage/>} */}
-    <MainSection/>
+    <WelcomePage/>
+    {/* <MainSection/> */}
     </>
   )
 }
