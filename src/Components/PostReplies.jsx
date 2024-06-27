@@ -9,7 +9,7 @@ export default function PostReplies() {
         <>
             <Container>
                 <div className="top">
-                    <Link className="Home" to="/">
+                    <Link className="Home" to="/home">
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>Post</h3>

@@ -23,8 +23,6 @@ export default function MainSection() {
                         </Route>
                         <Route path="/replies" element={<PostReplies />}>
                         </Route>
-                        {/* <MidSection /> */}
-                        {/* <PostReplies /> */}
                     </Routes>
                     <RightBar />
                 </Main>
