@@ -229,4 +229,14 @@ font-style: normal;
   cursor: pointer;
   background-color: ${props => props.$signUp ? "#0f89da" : props.$post ? "#0f89da" : props.$post1 ? "#0f89da" : props.$SignInNext ? "#242424" : props.$follow ? "#242424" : props.$next ? "#979797" : props.$signIn ? "#e5eff5" : "#eaeaea"};
 }
+.link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  height: 55px;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+}
 `
