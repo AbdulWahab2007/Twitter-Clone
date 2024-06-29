@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import '@radix-ui/colors/black-alpha.css';
@@ -19,7 +18,7 @@ export default function SignUpButton() {
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState('');
 
-  const handlepost = async () => {
+  const handlesignup = async () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValid = regex.test(email)
     if (password === confirmation) {
@@ -28,7 +27,6 @@ export default function SignUpButton() {
         const data = { username: name, email, password }
         console.log(data);
         const response = await axios.post("http://localhost:5000/api/user/signup", data)
-
         console.log(response);
         if (response.status == 200) {
           setIsLoggedin(true)
@@ -60,7 +58,7 @@ export default function SignUpButton() {
             <styles.SignUpContainer>
               <h1>Create your account</h1>
               <div className="InputHolder">
-                <styles.Input value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Name  (At least 3 words)</p>
+                <styles.Input value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Username  (At least 3 words)</p>
               </div>
               <div className="InputHolder">
                 <styles.Input value={email} onChange={(e) => { setEmail(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Email  (Only valid mails)</p>
@@ -72,7 +70,7 @@ export default function SignUpButton() {
                 <styles.Input value={confirmation} onChange={(e) => { setConfirmation(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Confirm Password</p>
               </div>
 
-              <styles.Button $next onClick={handlepost}>Next</styles.Button>
+              <styles.Button $next onClick={handlesignup}>Next</styles.Button>
 
             </styles.SignUpContainer>
           </styles.Sign>
