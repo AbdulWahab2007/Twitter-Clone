@@ -9,7 +9,6 @@ import '@radix-ui/colors/violet.css';
 import * as styles from './Dialog'
 import axios from 'axios';
 import { Context } from '/src/App'
-import { Link } from 'react-router-dom'
 
 
 export default function SignUpButton() {
@@ -19,7 +18,6 @@ export default function SignUpButton() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState('');
-  const [path, setPath] = useState('access');
 
   const handlepost = async () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,14 +32,13 @@ export default function SignUpButton() {
         console.log(response);
         if (response.status == 200) {
           setIsLoggedin(true)
-          setPath("main")
         }
 
       }
       else {
         alert("Some of your information is WRONG or INVALID!!!  Check Again!")
       }
-    }else {
+    } else {
       alert("Password theek kar na 0_0")
     }
   }
@@ -75,7 +72,7 @@ export default function SignUpButton() {
                 <styles.Input value={confirmation} onChange={(e) => { setConfirmation(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Confirm Password</p>
               </div>
 
-              <styles.Button $next onClick={handlepost}><Link className='link' to={"/" + path}>Next</Link></styles.Button>
+              <styles.Button $next onClick={handlepost}>Next</styles.Button>
 
             </styles.SignUpContainer>
           </styles.Sign>

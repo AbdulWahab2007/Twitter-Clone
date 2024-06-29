@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import SignUpButton from './SignUpButton'
 import SignInButton from './SignInButton'
 import { Button } from './Dialog'
+import { Context } from '/src/App'
+import { Navigate } from 'react-router-dom'
 
 export default function WelcomePage() {
+  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  if(isLoggedin){
+    return <Navigate to="/main/home"/>;
+ }
   return (
     <>
       <Main>

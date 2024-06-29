@@ -17,19 +17,20 @@ import {
 export const Context = createContext();
 
 export default function App() {
-  const [isLoggedin, setIsLoggedin] = useState(true);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  console.log(isLoggedin);
   return (
     <Context.Provider value={{ isLoggedin, setIsLoggedin }}>
-        <Routes>
-          <Route path="/access" element={<WelcomePage />}>
-          </Route>
-          <Route path="/main" element={<MainSection />}>
-          </Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<WelcomePage />}>
+        </Route>
+        <Route path="/main" element={<MainSection />}>
+          <Route path="home" element={<MidSection />}></Route>
+          <Route path="replies" element={<PostReplies />}></Route>
+        </Route>
+      </Routes>
 
-        <GlobalCSS />
-        {/* <WelcomePage /> */}
-        {/* <MainSection/> */}
+      <GlobalCSS />
     </Context.Provider>
   )
 }

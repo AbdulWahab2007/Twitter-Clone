@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import PostCard from './PostCard'
 import { Button } from './Dialog'
 import { Link } from 'react-router-dom'
+import { Context } from '/src/App'
 
 export default function PostReplies() {
+    const { isLoggedin, setIsLoggedin } = useContext(Context);
+    if (!isLoggedin) {
+        return <Navigate to="/" />;
+    }
     return (
         <>
             <Container>
                 <div className="top">
-                    <Link className="Home" to="/home">
+                    <Link className="Home" to="/main/home">
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>Post</h3>

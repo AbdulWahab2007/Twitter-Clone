@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-
+import { Context } from '/src/App'
 export default function PostCard(props) {
+  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  if (!isLoggedin) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <Container>
-        <Link className="Replies" to="/replies">
+        <Link className="Replies" to="/main/replies">
           <ProfileContainer>
             <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
           </ProfileContainer>

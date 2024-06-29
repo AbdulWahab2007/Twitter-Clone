@@ -1,10 +1,10 @@
-import React , {useContext} from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import SideBar from './SideBar'
 import MidSection from './MidSection'
 import RightBar from './RightBar'
 import PostReplies from './PostReplies'
-import {Context} from '/src/App'
+import { Context } from '/src/App'
 import {
     BrowserRouter as Router,
     BrowserRouter,
@@ -12,25 +12,21 @@ import {
     Routes,
     Link,
     Navigate,
+    Outlet,
 } from "react-router-dom";
 
 export default function MainSection() {
-    const {isLoggedin , setIsLoggedin} = useContext(Context);
+    const { isLoggedin, setIsLoggedin } = useContext(Context);
 
-    if(!isLoggedin){
-       return <Navigate to="/access"/>;
+    if (!isLoggedin) {
+        return <Navigate to="/" />;
     }
 
     return (
         <>
             <Main>
                 <SideBar />
-                <Routes>
-                    <Route path="/tweets" element={<MidSection />}>
-                    </Route>
-                    <Route path="/replies" element={<PostReplies />}>
-                    </Route>
-                </Routes>
+                <Outlet />
                 <RightBar />
             </Main>
         </>
