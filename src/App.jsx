@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React from 'react'
 import WelcomePage from './Components/WelcomePage'
 import GlobalCSS from './GlobalCSS'
 import '@radix-ui/themes/styles.css'
@@ -13,14 +13,11 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
-
-export const Context = createContext();
+import Provider from './GlobalContext'
 
 export default function App() {
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  console.log(isLoggedin);
   return (
-    <Context.Provider value={{ isLoggedin, setIsLoggedin }}>
+    <Provider>
       <Routes>
         <Route path="/" element={<WelcomePage />}>
         </Route>
@@ -31,6 +28,6 @@ export default function App() {
       </Routes>
 
       <GlobalCSS />
-    </Context.Provider>
+    </Provider>
   )
 }

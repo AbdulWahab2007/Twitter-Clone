@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import SignUpButton from './SignUpButton'
 import SignInButton from './SignInButton'
 import { Button } from './Dialog'
-import { Context } from '/src/App'
+import { Context } from '/src/GlobalContext'
 import { Navigate } from 'react-router-dom'
 
 export default function WelcomePage() {

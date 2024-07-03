@@ -4,7 +4,7 @@ import SideBar from './SideBar'
 import MidSection from './MidSection'
 import RightBar from './RightBar'
 import PostReplies from './PostReplies'
-import { Context } from '/src/App'
+import { Context } from '/src/GlobalContext'
 import {
     BrowserRouter as Router,
     BrowserRouter,

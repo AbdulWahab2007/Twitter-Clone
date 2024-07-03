@@ -9,21 +9,20 @@ import '@radix-ui/colors/violet.css';
 import * as styles from './Dialog'
 import { HRcontainer } from './WelcomePage'
 import axios from 'axios';
-import { Context } from '/src/App'
+import { Context } from '/src/GlobalContext'
 
 export default function SignInButton() {
     const { isLoggedin, setIsLoggedin } = useContext(Context);
+    const { token, setToken } = useContext(Context);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handlesignin = async () => {
-        console.log("Clicked!!!");
         const data = { username, password }
-        console.log(data);
         const response = await axios.post("http://localhost:5000/api/user/login", data)
-        console.log(response);
         if (response.status == 200) {
             setIsLoggedin(true)
+            setToken(response.data.token)
         }
     }
 

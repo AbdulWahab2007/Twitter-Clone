@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PostCard from './PostCard'
 import { Button } from './Dialog'
 import { Link } from 'react-router-dom'
-import { Context } from '/src/App'
+import { Context } from '/src/GlobalContext'
 
 export default function PostReplies() {
     const { isLoggedin, setIsLoggedin } = useContext(Context);

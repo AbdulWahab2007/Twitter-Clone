@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { Context } from '/src/App'
+import { Context } from '/src/GlobalContext'
 export default function PostCard(props) {
   const { isLoggedin, setIsLoggedin } = useContext(Context);
   if (!isLoggedin) {
