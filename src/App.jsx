@@ -1,10 +1,10 @@
 import React from 'react'
-import WelcomePage from './Components/WelcomePage'
+import WelcomePage from './components/WelcomePage'
 import GlobalCSS from './GlobalCSS'
 import '@radix-ui/themes/styles.css'
-import MainSection from './Components/MainSection'
-import MidSection from '/src/Components/MidSection'
-import PostReplies from '/src/Components/PostReplies'
+import MainSection from './components/MainSection'
+import MidSection from '/src/pages/Home/MidSection'
+import PostReplies from '/src/pages/Replies/PostReplies'
 import {
   BrowserRouter as Router,
   BrowserRouter,

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import PostCard from './PostCard'
-import { Button } from './Dialog'
+import PostCard from '../../components/PostCard'
+import { Button } from '/src/components/Dialog'
 import { Link } from 'react-router-dom'
 import { Context } from '/src/GlobalContext'
 

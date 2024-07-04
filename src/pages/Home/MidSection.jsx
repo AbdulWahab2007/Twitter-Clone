@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Button } from './Dialog'
-import PostCard from './PostCard'
+import { Button } from '../../components/Dialog'
+import PostCard from '../../components/PostCard'
 
 export default function MidSection() {
 

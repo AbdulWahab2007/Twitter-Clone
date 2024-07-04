@@ -7,7 +7,7 @@ import '@radix-ui/colors/green.css';
 import '@radix-ui/colors/mauve.css';
 import '@radix-ui/colors/violet.css';
 import * as styles from './Dialog'
-import { HRcontainer } from './WelcomePage'
+import { HRcontainer } from '/src/components/WelcomePage'
 import axios from 'axios';
 import { Context } from '/src/GlobalContext'
 

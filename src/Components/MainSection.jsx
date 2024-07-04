@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import SideBar from './SideBar'
-import MidSection from './MidSection'
+import MidSection from '../pages/Home/MidSection'
 import RightBar from './RightBar'
-import PostReplies from './PostReplies'
+import PostReplies from '../pages/Replies/PostReplies'
 import { Context } from '/src/GlobalContext'
 import {
     BrowserRouter as Router,

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import styled from 'styled-components'
-import SignUpButton from './SignUpButton'
-import SignInButton from './SignInButton'
-import { Button } from './Dialog'
+import SignUpButton from '/src/components/SignUpButton'
+import SignInButton from '/src/components/SignInButton'
+import { Button } from '/src/components/Dialog'
 import { Context } from '/src/GlobalContext'
 import { Navigate } from 'react-router-dom'
 
