@@ -26,9 +26,9 @@ export default function SignUpButton() {
       if (name.length >= 3 && isValid && password.length >= 8 && password.length < 16) {
         const data = { username: name, email, password }
         const response = await axios.post("http://localhost:5000/api/user/signup", data)
-        setToken(response.data.token);
         if (response.status == 200) {
           setIsLoggedin(true)
+          setToken(response.data.token);
         }
 
       }
