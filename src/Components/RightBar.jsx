@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Button } from './Dialog'
 import ProfileSuggestion from './ProfileSuggestion'
+import axios from 'axios';
 
 export default function RightBar() {
+    const [users, setUsers] = useState([]);
+    const ShowUsers = () => {
+        const response = axios.get("http://localhost:5000/api/user/randomuser").then(function (response) {
+            setUsers(response.data)
+        })
+    }
+    useEffect(() => {
+        ShowUsers()
+    }, [])
+
+
     return (
         <>
             <Container>
@@ -18,9 +30,14 @@ export default function RightBar() {
                     <div className="top">
                         <h3>Who to Follow</h3>
                     </div>
-                    <ProfileSuggestion />
-                    <ProfileSuggestion />
-                    <ProfileSuggestion />
+
+                    {users.map((element, index) => {
+                        return <ProfileSuggestion key={index} name={element.username} email={element.email} />
+
+                    })}
+                    {/* <ProfileSuggestion name="Wahab" />
+                    <ProfileSuggestion name="Wahab" />
+                    <ProfileSuggestion name="Wahab" /> */}
                     <div className="bottom">
                         <a href="">Show more</a>
                     </div>

@@ -12,7 +12,7 @@ import axios from 'axios';
 import { Context } from '/src/GlobalContext'
 
 export default function SignInButton() {
-    const { isLoggedin, setIsLoggedin } = useContext(Context);
+    const { isLoggedin, setIsLoggedin, handleUnavailable } = useContext(Context);
     const { token, setToken } = useContext(Context);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -41,8 +41,8 @@ export default function SignInButton() {
                         </div>
                         <styles.SignInContainer>
                             <h1>Sign in to X</h1>
-                            <styles.Button $normal><img className='Logo' src='https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png' />Signup with Google</styles.Button>
-                            <styles.Button $normal><img className='Logo' src='https://seeklogo.com/images/A/apple-logo-E3DBF3AE34-seeklogo.com.png' />Signup with Apple</styles.Button>
+                            <styles.Button onClick={handleUnavailable} $normal><img className='Logo' src='https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png' />Signup with Google</styles.Button>
+                            <styles.Button onClick={handleUnavailable} $normal><img className='Logo' src='https://seeklogo.com/images/A/apple-logo-E3DBF3AE34-seeklogo.com.png' />Signup with Apple</styles.Button>
                             <HRcontainer>
                                 <hr />
                                 <p>or</p>

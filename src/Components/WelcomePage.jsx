@@ -7,7 +7,7 @@ import { Context } from '/src/GlobalContext'
 import { Navigate } from 'react-router-dom'
 
 export default function WelcomePage() {
-  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  const { isLoggedin, setIsLoggedin, handleUnavailable } = useContext(Context);
   if(isLoggedin){
     return <Navigate to="/main/home"/>;
  }
@@ -23,8 +23,8 @@ export default function WelcomePage() {
             <ButtonsContainer>
 
               <h2>Join today.</h2>
-              <Button><img className='Logo' src='https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png' />Signup with Google</Button>
-              <Button><img className='Logo' src='https://seeklogo.com/images/A/apple-logo-E3DBF3AE34-seeklogo.com.png' />Signup with Apple</Button>
+              <Button onClick={handleUnavailable}><img className='Logo' src='https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png' />Signup with Google</Button>
+              <Button onClick={handleUnavailable}><img className='Logo' src='https://seeklogo.com/images/A/apple-logo-E3DBF3AE34-seeklogo.com.png' />Signup with Apple</Button>
 
               <HRcontainer>
                 <hr />
