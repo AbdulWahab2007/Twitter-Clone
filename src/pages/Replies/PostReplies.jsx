@@ -13,12 +13,12 @@ export default function PostReplies() {
     return (
         <>
             <Container>
-                <div className="top">
+                <Top>
                     <Link className="Home" to="/main/home">
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>Post</h3>
-                </div>
+                </Top>
                 <PostCard text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sapiente voluptas quae nobis culpa velit delectus sit nulla accusamus dolorum ex, ducimus, veritatis iusto ratione porro! Vitae ipsum sint nostrum?"} />
                 <Reply>
                     <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
@@ -41,17 +41,17 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    .top{
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin: 5px 0px 10px 0px;
-    }
+`
+export const Top = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 5px 0px 10px 0px;
     .Home{
         text-decoration: none;
     }
     .heading{
-        margin: 0px 0px 0px 30px;
+        margin: 0px 0px 0px 25px;
         font-size: 23px;
         font-family: "Roboto Slab", serif;
         font-optical-sizing: auto;
@@ -76,6 +76,7 @@ const Container = styled.div`
         margin: 0px;
     }
 `
+
 
 const Reply = styled.div`
     display: flex;

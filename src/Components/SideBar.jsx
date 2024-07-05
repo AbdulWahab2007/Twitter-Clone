@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from './Dialog'
+import { Link } from 'react-router-dom'
 import Popover from './ProfilePopover'
 
 export default function SideBar() {
@@ -8,16 +9,16 @@ export default function SideBar() {
     <>
       <SideBarContainer>
         <Anchor><img className='XLogo' src="/src/Components/Icons/TwitterLogo.svg" alt="" /></Anchor>
-        <Anchor><a href='/home'><img src='/src/Components/Icons/Home.svg' alt="" />Home</a></Anchor>
-        <Anchor><a href='/explore'><img src='/src/Components/Icons/Explore.svg' alt="" />Explore</a></Anchor>
-        <Anchor><a href='/notifications'><img src='/src/Components/Icons/Notifications.svg' alt="" />Notifications</a></Anchor>
-        <Anchor><a href='/messages'><img src='/src/Components/Icons/Messages.svg' alt="" />Messages</a></Anchor>
-        <Anchor><a href='/grok'><img src='/src/Components/Icons/Grok.svg' alt="" />Grok</a></Anchor>
-        <Anchor><a href='/lists'><img src='/src/Components/Icons/Lists.svg' alt="" />Lists</a></Anchor>
-        <Anchor><a href='/communities'><img src='/src/Components/Icons/Communities.svg' alt="" />Communities</a></Anchor>
-        <Anchor><a href='/premium'><img src='/src/Components/Icons/Premium.svg' alt="" />Premium</a></Anchor>
-        <Anchor><a href='/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</a></Anchor>
-        <Anchor><a href='/more'><img src='/src/Components/Icons/More.svg' alt="" />More</a></Anchor>
+        <Anchor><Link to='/main/home'><img src='/src/Components/Icons/Home.svg' alt="" />Home</Link></Anchor>
+        <Anchor><Link to='/explore'><img src='/src/Components/Icons/Explore.svg' alt="" />Explore</Link></Anchor>
+        <Anchor><Link to='/notifications'><img src='/src/Components/Icons/Notifications.svg' alt="" />Notifications</Link></Anchor>
+        <Anchor><Link to='/messages'><img src='/src/Components/Icons/Messages.svg' alt="" />Messages</Link></Anchor>
+        <Anchor><Link to='/grok'><img src='/src/Components/Icons/Grok.svg' alt="" />Grok</Link></Anchor>
+        <Anchor><Link to='/lists'><img src='/src/Components/Icons/Lists.svg' alt="" />Lists</Link></Anchor>
+        <Anchor><Link to='/communities'><img src='/src/Components/Icons/Communities.svg' alt="" />Communities</Link></Anchor>
+        <Anchor><Link to='/premium'><img src='/src/Components/Icons/Premium.svg' alt="" />Premium</Link></Anchor>
+        <Anchor><Link to='/main/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</Link></Anchor>
+        <Anchor><Link to='/more'><img src='/src/Components/Icons/More.svg' alt="" />More</Link></Anchor>
         <Button $post>Post</Button>
         <Popover />
       </SideBarContainer>

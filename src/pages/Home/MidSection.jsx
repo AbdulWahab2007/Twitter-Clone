@@ -61,7 +61,7 @@ const Container = styled.div`
     }
 `
 
-const TopCategories = styled.div`
+export const TopCategories = styled.div`
     width: 100%;
     height: 55px;
     display: flex;
