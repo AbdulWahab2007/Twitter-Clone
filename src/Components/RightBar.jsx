@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button } from './Dialog'
 import ProfileSuggestion from './ProfileSuggestion'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function RightBar() {
     const [users, setUsers] = useState([]);
@@ -32,12 +33,13 @@ export default function RightBar() {
                     </div>
 
                     {users.map((element, index) => {
-                        return <ProfileSuggestion key={index} name={element.username} email={element.email} />
+                        return <div  key={index}>
+                            <Link className='link' to = {"/main/user/" + element.username}>
+                                <ProfileSuggestion name={element.username} email={element.email} />
+                            </Link>
+                        </div>
 
                     })}
-                    {/* <ProfileSuggestion name="Wahab" />
-                    <ProfileSuggestion name="Wahab" />
-                    <ProfileSuggestion name="Wahab" /> */}
                     <div className="bottom">
                         <a href="">Show more</a>
                     </div>
@@ -122,5 +124,8 @@ const FollowSuggestions = styled.div`
         font-weight: 500;
         font-style: normal;
 
+    }
+    .link{
+        margin: 0px;
     }
 `

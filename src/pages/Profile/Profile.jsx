@@ -48,7 +48,7 @@ export default function Profile() {
     )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
     width: 40%;
     height: 100vh;
     margin-left: 399px;
@@ -63,7 +63,7 @@ const Container = styled.div`
     }
 `
 
-const Info = styled.div`
+export const Info = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;

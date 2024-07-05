@@ -15,6 +15,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Provider from './GlobalContext'
+import UserProfile from './components/UserProfile'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="home" element={<MidSection />}></Route>
           <Route path="replies" element={<PostReplies />}></Route>
           <Route path="profile" element={<Profile />}></Route>
+          <Route path="user/:username" element={<UserProfile />}></Route>
         </Route>
       </Routes>
 

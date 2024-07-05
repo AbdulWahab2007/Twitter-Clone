@@ -3,7 +3,12 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Context } from '/src/GlobalContext'
+import moment from 'moment';
+
 export default function PostCard(props) {
+  const tweetTime = `${props.date.substring(0, 10)}`
+  const time = moment(props.date).fromNow()
+  //console.log( moment("2012-06-20", "YYYYMMDD").fromNow());
   const { isLoggedin, setIsLoggedin } = useContext(Context);
   if (!isLoggedin) {
     return <Navigate to="/" />;
@@ -20,7 +25,7 @@ export default function PostCard(props) {
               <h3>Demo Name</h3>
               <p className='InfoP'>@DemoUsername0011</p>
               <p className='dot'>·</p>
-              <p className='InfoP'>19h</p>
+              <p className='InfoP'>{time}</p>
             </Info>
             <PostText>
               <p className='text'>{props.text}</p>

@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 export const Context = createContext()
 
 export default function Provider(props) {
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(true);
   const [token, setToken] = useState('');
   if (token.length != 0) {
     localStorage.setItem("token", token);
