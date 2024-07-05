@@ -1,11 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components/Dialog'
 import PostCard from '../../components/PostCard'
+import axios from 'axios';
+import { Context } from '/src/GlobalContext'
 
 export default function MidSection() {
 
     const [isActive, SetisActive] = useState(0);
+    const [text, setText] = useState('');
+    const { token, setToken } = useContext(Context);
+    const localtoken = localStorage.getItem("token");
+    const handleposttweet = async () => {
+        console.log(localtoken);
+        const data = {text}
+        console.log(data);
+        const response = await axios.post("http://localhost:5000/api/tweet/", data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localtoken
+            }
+        })
+        if(response.status == 200){
+            alert("Tweet posted successfully!")
+            setText('')
+        }
+        console.log(response);
+    }
 
     return (
         <>
@@ -17,7 +38,7 @@ export default function MidSection() {
                 <PostSection>
                     <div className="top">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
-                        <textarea placeholder='What is happening?!' name="" id=""></textarea>
+                        <textarea value={text} onChange={(e) => { setText(e.target.value) }} placeholder='What is happening?!' name="" id=""></textarea>
                     </div>
                     <hr />
                     <div className="bottom">
@@ -30,7 +51,7 @@ export default function MidSection() {
                             <span><img className='TextOpt' src="/src/Components/Icons/Location.svg" alt="" /></span>
                         </div>
                         <div className="btncontainer">
-                            <Button $post1>Post</Button>
+                            <Button $post1 onClick={handleposttweet}>Post</Button>
                         </div>
                     </div>
                 </PostSection>
