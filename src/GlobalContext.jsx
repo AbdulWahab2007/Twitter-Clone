@@ -3,8 +3,10 @@ import React, { createContext, useState } from 'react'
 export const Context = createContext()
 
 export default function Provider(props) {
-  const [isLoggedin, setIsLoggedin] = useState(true);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [name, setName] = useState('');
   const [token, setToken] = useState('');
+  const [loginusername, setloginUsername] = useState('');
   if (token.length != 0) {
     localStorage.setItem("token", token);
   }
@@ -12,7 +14,7 @@ export default function Provider(props) {
     alert("This feature is currently Unavailable :(")
   }
   return (
-    <Context.Provider value={{ isLoggedin, setIsLoggedin, token, setToken, handleUnavailable }}>
+    <Context.Provider value={{ isLoggedin, setIsLoggedin, token, setToken, handleUnavailable, loginusername, setloginUsername, name, setName }}>
       {props.children}
     </Context.Provider>
   )

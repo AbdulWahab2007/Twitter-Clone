@@ -12,17 +12,19 @@ import axios from 'axios';
 import { Context } from '/src/GlobalContext'
 
 export default function SignInButton() {
-    const { isLoggedin, setIsLoggedin, handleUnavailable } = useContext(Context);
+    const { isLoggedin, setIsLoggedin, handleUnavailable, loginusername, setloginUsername, name, setName } = useContext(Context);
     const { token, setToken } = useContext(Context);
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handlesignin = async () => {
-        const data = { username, password }
+        const data = { username : loginusername, password }
         const response = await axios.post("http://localhost:5000/api/user/login", data)
         if (response.status == 200) {
             setIsLoggedin(true)
             setToken(response.data.token)
+            if (name.length == 0) {
+                setName(loginusername)
+              }
         }
     }
 
@@ -49,7 +51,7 @@ export default function SignInButton() {
                                 <hr />
                             </HRcontainer>
                             <div className="InputHolder">
-                                <styles.Input value={username} onChange={(e) => { setUsername(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Username</p>
+                                <styles.Input value={loginusername} onChange={(e) => { setloginUsername(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Username</p>
                             </div>
                             <div className="InputHolder">
                                 <styles.Input value={password} onChange={(e) => { setPassword(e.target.value) }} type="text" placeholder='' /><p className='placeholder'>Password</p>

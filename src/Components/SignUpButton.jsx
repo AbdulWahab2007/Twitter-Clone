@@ -12,9 +12,8 @@ import { Context } from '/src/GlobalContext'
 
 export default function SignUpButton() {
 
-  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  const { isLoggedin, setIsLoggedin, name, setName } = useContext(Context);
   const { token, setToken } = useContext(Context);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState('');

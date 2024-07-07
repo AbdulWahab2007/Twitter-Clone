@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Container, Info } from '../Profile/Profile'
 import { Top } from '../Replies/PostReplies'
@@ -6,26 +6,37 @@ import { TopCategories } from '../Home/MidSection'
 import PostCard from '../../components/PostCard'
 import { Button } from '../../components/Dialog'
 import axios from 'axios';
+import { Context } from '/src/GlobalContext'
 
 export default function UserProfile() {
+    const { name, loginusername, setName, setloginUsername } = useContext(Context);
     const [isActive, SetisActive] = useState(0);
+    const [myData, setMyData] = useState({});
     const [userData, setUserData] = useState({});
     const [followers, setFollowers] = useState(0);
     const [following, setFollowing] = useState(0);
     const [userID, setUserID] = useState('');
     const [tweets, setTweets] = useState([]);
+    const [followed, setFollowed] = useState(false);
     const [dateJoined, setDatejoined] = useState('');
     const localtoken = localStorage.getItem("token");
     const params = useParams();
     const { username } = params;
     const handleuserdata = async () => {
-        const data = { username }
         const response = axios.get("http://localhost:5000/api/user/?username=" + username).then(function (response) {
             setUserData(response.data)
             setFollowers(response.data.followers.length)
             setFollowing(response.data.following.length)
             setDatejoined(`${response.data.createdAt.substring(0, 10)}`)
-            setUserID(response.data._id)
+            const changedID = response.data._id
+            setUserID(changedID)
+            const myresponse = axios.get("http://localhost:5000/api/user/?username=" + name).then(function (myresponse) {
+                setMyData(myresponse.data)
+                console.log(myresponse.data.following);
+                const match = myresponse.data.following.includes(changedID);
+                setFollowed(match)
+                console.log(match);
+            })
         })
     }
     const handleloadtweets = async () => {
@@ -34,15 +45,30 @@ export default function UserProfile() {
         })
     }
     const handlefollowuser = async () => {
-        const data ={}
+        const data = {}
         const response = await axios.post("http://localhost:5000/api/user/follow?userToBeFollowed=" + userID, data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + localtoken
             }
         })
-        if(response.status == 200){
+        console.log(userID);
+        if (response.status == 200) {
             alert("Followed")
+            setFollowed(true)
+        }
+    }
+    const handleunfollowuser = async () => {
+        const data = {}
+        const response = await axios.post("http://localhost:5000/api/user/unfollow?userToBeUnFollowed=" + userID, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localtoken
+            }
+        })
+        if (response.status == 200) {
+            alert("UnFollowed")
+            setFollowed(false)
         }
     }
 
@@ -64,7 +90,7 @@ export default function UserProfile() {
                     <div className="DPholder">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
                         <div className="BtnContainer">
-                            <Button $follow onClick={handlefollowuser}>Follow</Button>
+                            <Button $follow onClick={followed ? handleunfollowuser : handlefollowuser}>{followed ? "Unfollow" : "Follow"}</Button>
                         </div>
                     </div>
                     <div className="bio">
