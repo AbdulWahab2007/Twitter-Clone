@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Container, Info } from '../pages/Profile/Profile'
-import { Top } from '../pages/Replies/PostReplies'
-import { TopCategories } from '../pages/Home/MidSection'
-import PostCard from './PostCard'
-import { Button } from './Dialog'
+import { Container, Info } from '../Profile/Profile'
+import { Top } from '../Replies/PostReplies'
+import { TopCategories } from '../Home/MidSection'
+import PostCard from '../../components/PostCard'
+import { Button } from '../../components/Dialog'
 import axios from 'axios';
 
 export default function UserProfile() {
     const [isActive, SetisActive] = useState(0);
     const [userData, setUserData] = useState({});
-    const [followers, setFollowers] = useState(5);
-    const [following, setFollowing] = useState(5);
+    const [followers, setFollowers] = useState(0);
+    const [following, setFollowing] = useState(0);
+    const [userID, setUserID] = useState('');
     const [tweets, setTweets] = useState([]);
     const [dateJoined, setDatejoined] = useState('');
+    const localtoken = localStorage.getItem("token");
     const params = useParams();
     const { username } = params;
     const handleuserdata = async () => {
@@ -23,14 +25,25 @@ export default function UserProfile() {
             setFollowers(response.data.followers.length)
             setFollowing(response.data.following.length)
             setDatejoined(`${response.data.createdAt.substring(0, 10)}`)
+            setUserID(response.data._id)
         })
     }
     const handleloadtweets = async () => {
-        const data = { username }
         const response = axios.get("http://localhost:5000/api/tweet?username=" + username).then(function (response) {
-            console.log(response.data[0])
             setTweets(response.data)
         })
+    }
+    const handlefollowuser = async () => {
+        const data ={}
+        const response = await axios.post("http://localhost:5000/api/user/follow?userToBeFollowed=" + userID, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localtoken
+            }
+        })
+        if(response.status == 200){
+            alert("Followed")
+        }
     }
 
     useEffect(() => {
@@ -51,7 +64,7 @@ export default function UserProfile() {
                     <div className="DPholder">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
                         <div className="BtnContainer">
-                            <Button $follow>Follow</Button>
+                            <Button $follow onClick={handlefollowuser}>Follow</Button>
                         </div>
                     </div>
                     <div className="bio">
@@ -69,7 +82,7 @@ export default function UserProfile() {
                 <div className="PostContainer">
                     {tweets.map((element, index) => {
                         return <div key={index}>
-                                <PostCard text={element.text} date={element.time} />
+                            <PostCard text={element.text} date={element.time} />
                         </div>
 
                     })}

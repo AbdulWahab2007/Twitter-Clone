@@ -15,7 +15,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Provider from './GlobalContext'
-import UserProfile from './components/UserProfile'
+import UserProfile from '/src/pages/Users/UserProfile.jsx'
 
 export default function App() {
   return (

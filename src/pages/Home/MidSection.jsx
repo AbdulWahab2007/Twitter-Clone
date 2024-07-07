@@ -12,9 +12,7 @@ export default function MidSection() {
     const { token, setToken } = useContext(Context);
     const localtoken = localStorage.getItem("token");
     const handleposttweet = async () => {
-        console.log(localtoken);
         const data = {text}
-        console.log(data);
         const response = await axios.post("http://localhost:5000/api/tweet/", data, {
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +23,12 @@ export default function MidSection() {
             alert("Tweet posted successfully!")
             setText('')
         }
-        console.log(response);
+    }
+    const handlenewsfeed = async () => {
+        const data = {}
+        const response = axios.get("http://localhost:5000/api/user/randomuser", data).then(function (response) {
+            console.log(response.data)
+        })
     }
 
     return (
@@ -56,10 +59,10 @@ export default function MidSection() {
                     </div>
                 </PostSection>
                 <div className="PostContainer">
-                    <PostCard date="19h" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt. Doloremque facilis tempore laboriosam possimus perspiciatis excepturi, aut earum quos nulla eum!" />
-                    <PostCard date="19h" text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
-                    <PostCard date="19h" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt." />
-                    <PostCard date="19h" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi ad explicabo excepturi? Tempora consectetur eum perferendis assumenda voluptatem nihil provident corrupti, soluta unde molestias odit harum aliquid quo amet vitae ut quaerat fugiat doloremque rerum qui veritatis possimus reprehenderit modi? Tenetur adipisci expedita autem cum veritatis iste quidem ipsa, modi soluta ipsum quia dolores, blanditiis ad amet magni cumque provident deleniti itaque ab quo alias numquam porro. Illo, est consequatur quaerat aut dolores et qui vitae ea omnis alias exercitationem nobis reiciendis id amet facere, autem quo debitis pariatur facilis. Eos architecto earum est debitis doloremque tempora minus omnis. Saepe, sit fugiat cumque illo, vel omnis neque temporibus voluptate sint eaque placeat consequuntur mollitia, ipsum et. Facilis praesentium quasi adipisci unde, minima harum dicta vel laborum quis ab facere omnis consequuntur quisquam maxime distinctio eveniet commodi sint ea libero excepturi beatae doloremque nobis dolorem eaque. Fugiat nihil perferendis sapiente." />
+                    <PostCard date="20200305" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt. Doloremque facilis tempore laboriosam possimus perspiciatis excepturi, aut earum quos nulla eum!" />
+                    <PostCard date="20200305" text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
+                    <PostCard date="20200305" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, non. Culpa porro molestias, quo voluptate cum alias aperiam, quae neque sunt optio nisi saepe beatae impedit quia, quasi dignissimos sint atque amet itaque quisquam deleniti fugiat modi. Vel ad consequatur dignissimos officiis cumque doloribus quas minima impedit sunt." />
+                    <PostCard date="20200305" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi ad explicabo excepturi? Tempora consectetur eum perferendis assumenda voluptatem nihil provident corrupti, soluta unde molestias odit harum aliquid quo amet vitae ut quaerat fugiat doloremque rerum qui veritatis possimus reprehenderit modi? Tenetur adipisci expedita autem cum veritatis iste quidem ipsa, modi soluta ipsum quia dolores, blanditiis ad amet magni cumque provident deleniti itaque ab quo alias numquam porro. Illo, est consequatur quaerat aut dolores et qui vitae ea omnis alias exercitationem nobis reiciendis id amet facere, autem quo debitis pariatur facilis. Eos architecto earum est debitis doloremque tempora minus omnis. Saepe, sit fugiat cumque illo, vel omnis neque temporibus voluptate sint eaque placeat consequuntur mollitia, ipsum et. Facilis praesentium quasi adipisci unde, minima harum dicta vel laborum quis ab facere omnis consequuntur quisquam maxime distinctio eveniet commodi sint ea libero excepturi beatae doloremque nobis dolorem eaque. Fugiat nihil perferendis sapiente." />
                 </div>
             </Container>
         </>

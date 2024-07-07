@@ -6,9 +6,7 @@ import { Context } from '/src/GlobalContext'
 import moment from 'moment';
 
 export default function PostCard(props) {
-  const tweetTime = `${props.date.substring(0, 10)}`
   const time = moment(props.date).fromNow()
-  //console.log( moment("2012-06-20", "YYYYMMDD").fromNow());
   const { isLoggedin, setIsLoggedin } = useContext(Context);
   if (!isLoggedin) {
     return <Navigate to="/" />;
