@@ -30,10 +30,9 @@ export default function PostCard(props) {
             </PostText>
             <PostOpts>
               <div className="left">
-                <span className='IconContainer'><span className="material-symbols-outlined">chat_bubble</span><p>120</p></span>
-                <span className='RepostIconContainer'><span className="material-symbols-outlined repost">autorenew</span><p>3.7k</p></span>
-                <span className='LikeIconContainer'><span className="material-symbols-outlined like">favorite</span><p>17k</p></span>
-                <span className='IconContainer'><span className="material-symbols-outlined">bar_chart</span><p>989k</p></span>
+                <span className='IconContainer'><span className="material-symbols-outlined">chat_bubble</span><p>{props.replies >= 0 ? props.replies : '#'}</p></span>
+                <span className='RepostIconContainer'><span className="material-symbols-outlined repost">autorenew</span><p>{props.retweets >= 0 ? props.retweets : '#'}</p></span>
+                <span className='LikeIconContainer'><span className="material-symbols-outlined like">favorite</span><p>{props.likes >= 0 ? props.likes : '#'}</p></span>
               </div>
               <div className="right">
                 <span className='RightIconContainer'><span className="material-symbols-outlined">bookmark</span></span>

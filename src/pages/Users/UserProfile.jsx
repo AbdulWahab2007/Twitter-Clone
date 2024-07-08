@@ -32,10 +32,8 @@ export default function UserProfile() {
             setUserID(changedID)
             const myresponse = axios.get("http://localhost:5000/api/user/?username=" + name).then(function (myresponse) {
                 setMyData(myresponse.data)
-                console.log(myresponse.data.following);
                 const match = myresponse.data.following.includes(changedID);
                 setFollowed(match)
-                console.log(match);
             })
         })
     }
@@ -52,7 +50,6 @@ export default function UserProfile() {
                 'Authorization': "Bearer " + localtoken
             }
         })
-        console.log(userID);
         if (response.status == 200) {
             alert("Followed")
             setFollowed(true)
