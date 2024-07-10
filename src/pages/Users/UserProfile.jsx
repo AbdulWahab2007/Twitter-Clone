@@ -7,6 +7,7 @@ import PostCard from '../../components/PostCard'
 import { Button } from '../../components/Dialog'
 import axios from 'axios';
 import { Context } from '/src/GlobalContext'
+import { toast } from 'sonner';
 
 export default function UserProfile() {
     const { name, loginusername, setName, setloginUsername } = useContext(Context);
@@ -51,7 +52,7 @@ export default function UserProfile() {
             }
         })
         if (response.status == 200) {
-            alert("Followed")
+            toast.success("Followed")
             setFollowed(true)
         }
     }
@@ -64,7 +65,7 @@ export default function UserProfile() {
             }
         })
         if (response.status == 200) {
-            alert("UnFollowed")
+            toast.success("UnFollowed")
             setFollowed(false)
         }
     }

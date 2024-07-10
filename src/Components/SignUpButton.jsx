@@ -8,6 +8,7 @@ import '@radix-ui/colors/violet.css';
 import * as styles from './Dialog'
 import axios from 'axios';
 import { Context } from '/src/GlobalContext'
+import { toast } from 'sonner';
 
 
 export default function SignUpButton() {
@@ -24,18 +25,21 @@ export default function SignUpButton() {
     if (password === confirmation) {
       if (name.length >= 3 && isValid && password.length >= 8 && password.length < 16) {
         const data = { username: name, email, password }
-        const response = await axios.post("http://localhost:5000/api/user/signup", data)
+        const response = await axios.post("http://localhost:5000/api/user/signup", data).catch(function (error) {
+            toast.error("User Alredy Exists")
+        })
         if (response.status == 200) {
           setIsLoggedin(true)
           setToken(response.data.token);
+          toast.success("Successfully logged in")
         }
 
       }
       else {
-        alert("Some of your information is WRONG or INVALID!!!  Check Again!")
+        toast.error("Some of your information is WRONG or INVALID!!! Check Again!")
       }
     } else {
-      alert("Password theek kar na 0_0")
+      toast.error("Please check your password")
     }
   }
 

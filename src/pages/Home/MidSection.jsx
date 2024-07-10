@@ -4,6 +4,7 @@ import { Button } from '../../components/Dialog'
 import PostCard from '../../components/PostCard'
 import axios from 'axios';
 import { Context } from '/src/GlobalContext'
+import { toast } from 'sonner';
 
 export default function MidSection() {
 
@@ -12,16 +13,22 @@ export default function MidSection() {
     const { token, setToken } = useContext(Context);
     const localtoken = localStorage.getItem("token");
     const handleposttweet = async () => {
-        const data = {text}
-        const response = await axios.post("http://localhost:5000/api/tweet/", data, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + localtoken
+        if (text.length != 0) {
+            const data = { text }
+            const response = await axios.post("http://localhost:5000/api/tweet/", data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + localtoken
+                }
+            }).catch(function (error) {
+                toast.error("There might be a problem in the server, Try again later!")
+            })
+            if (response.status == 200) {
+                toast.success("Tweet posted successfully!")
+                setText('')
             }
-        })
-        if(response.status == 200){
-            alert("Tweet posted successfully!")
-            setText('')
+        } else {
+            toast.error("Textfield should not be empty!")
         }
     }
     const handlenewsfeed = async () => {
