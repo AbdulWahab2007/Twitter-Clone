@@ -16,10 +16,12 @@ import {
 } from "react-router-dom";
 import Provider from './GlobalContext'
 import UserProfile from '/src/pages/Users/UserProfile.jsx'
+import { Toaster } from 'sonner';
 
 export default function App() {
   return (
     <Provider>
+      <Toaster position="top-center" richColors/>
       <Routes>
         <Route path="/" element={<WelcomePage />}>
         </Route>

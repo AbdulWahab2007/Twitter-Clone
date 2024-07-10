@@ -10,6 +10,7 @@ import * as styles from './Dialog'
 import { HRcontainer } from '/src/components/WelcomePage'
 import axios from 'axios';
 import { Context } from '/src/GlobalContext'
+import { toast } from 'sonner';
 
 export default function SignInButton() {
     const { isLoggedin, setIsLoggedin, handleUnavailable, loginusername, setloginUsername, name, setName } = useContext(Context);
@@ -17,14 +18,17 @@ export default function SignInButton() {
     const [password, setPassword] = useState('');
 
     const handlesignin = async () => {
-        const data = { username : loginusername, password }
-        const response = await axios.post("http://localhost:5000/api/user/login", data)
+        const data = { username: loginusername, password }
+        const response = await axios.post("http://localhost:5000/api/user/login", data).catch(function (error) {
+            toast.error("Provided info in WRONG or INVALID!!!")
+        })
         if (response.status == 200) {
             setIsLoggedin(true)
             setToken(response.data.token)
+            toast.success("Successfully logged in")
             if (name.length == 0) {
                 setName(loginusername)
-              }
+            }
         }
     }
 

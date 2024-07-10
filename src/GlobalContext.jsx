@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import { toast } from 'sonner';
 
 export const Context = createContext()
 
@@ -11,7 +12,7 @@ export default function Provider(props) {
     localStorage.setItem("token", token);
   }
   const handleUnavailable = () => {
-    alert("This feature is currently Unavailable :(")
+    toast.info('This feature is currently UnAvailable')
   }
   return (
     <Context.Provider value={{ isLoggedin, setIsLoggedin, token, setToken, handleUnavailable, loginusername, setloginUsername, name, setName }}>

@@ -5,6 +5,7 @@ import SignInButton from '/src/components/SignInButton'
 import { Button } from '/src/components/Dialog'
 import { Context } from '/src/GlobalContext'
 import { Navigate } from 'react-router-dom'
+import { toast } from 'sonner';
 
 export default function WelcomePage() {
   const { isLoggedin, setIsLoggedin, handleUnavailable } = useContext(Context);
