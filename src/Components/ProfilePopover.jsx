@@ -42,7 +42,7 @@ export const IconButton = styled.button`
    border-radius: ${props => props.$suggestion ? "0px" : "80px"};
    height: 65px;
    width: 100%;
-   margin-top: ${props => props.$suggestion ? "0px" : "35px"};
+   margin-top: ${props => props.$suggestion ? "5px" : "35px"};
    margin-left: ${props => props.$suggestion ? "0px" : "-10px"};
    margin-right: 0px;
    margin-bottom: 0px;

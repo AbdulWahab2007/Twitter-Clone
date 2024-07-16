@@ -10,7 +10,7 @@ export default function SideBar() {
       <SideBarContainer>
         <Anchor><img className='XLogo' src="/src/Components/Icons/TwitterLogo.svg" alt="" /></Anchor>
         <Anchor><Link to='/main/home'><img src='/src/Components/Icons/Home.svg' alt="" />Home</Link></Anchor>
-        <Anchor><Link to='/explore'><img src='/src/Components/Icons/Explore.svg' alt="" />Explore</Link></Anchor>
+        <Anchor><Link to='/main/explore'><img src='/src/Components/Icons/Explore.svg' alt="" />Explore</Link></Anchor>
         <Anchor><Link to='/notifications'><img src='/src/Components/Icons/Notifications.svg' alt="" />Notifications</Link></Anchor>
         <Anchor><Link to='/messages'><img src='/src/Components/Icons/Messages.svg' alt="" />Messages</Link></Anchor>
         <Anchor><Link to='/grok'><img src='/src/Components/Icons/Grok.svg' alt="" />Grok</Link></Anchor>

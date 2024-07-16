@@ -17,16 +17,18 @@ import {
 import Provider from './GlobalContext'
 import UserProfile from '/src/pages/Users/UserProfile.jsx'
 import { Toaster } from 'sonner';
+import Search from './pages/Search/Search'
 
 export default function App() {
   return (
     <Provider>
-      <Toaster position="top-center" richColors/>
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<WelcomePage />}>
         </Route>
         <Route path="/main" element={<MainSection />}>
           <Route path="home" element={<MidSection />}></Route>
+          <Route path="explore" element={<Search />}></Route>
           <Route path="replies" element={<PostReplies />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="user/:username" element={<UserProfile />}></Route>

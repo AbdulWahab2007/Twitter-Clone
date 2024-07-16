@@ -33,8 +33,8 @@ export default function RightBar() {
                     </div>
 
                     {users.map((element, index) => {
-                        return <div  key={index}>
-                            <Link className='link' to = {"/main/user/" + element.username}>
+                        return <div key={index}>
+                            <Link className='link' to={"/main/user/" + element.username}>
                                 <ProfileSuggestion name={element.username} email={element.email} />
                             </Link>
                         </div>
@@ -88,12 +88,12 @@ const Premium = styled.div`
         }
 `
 
-const FollowSuggestions = styled.div`
+export const FollowSuggestions = styled.div`
     display: flex;
     flex-direction: column;
     width: 80%;
     border: 1px solid #e7e7e7;
-    margin: 55px 0px 0px 0px;
+    margin: ${props => props.$search ? "10px 0px 0px 0px" : "55px 0px 0px 0px"};
     border-radius: 20px;
     .top{
         display: flex;
