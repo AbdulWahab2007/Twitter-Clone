@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 export const Context = createContext()
 
 export default function Provider(props) {
-  const [isLoggedin, setIsLoggedin] = useState(true);
+  const [isLoggedin, setIsLoggedin] = useState(false);
   const [name, setName] = useState('');
   const [token, setToken] = useState('');
   const [loginusername, setloginUsername] = useState('');

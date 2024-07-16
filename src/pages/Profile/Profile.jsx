@@ -45,7 +45,7 @@ export default function Profile() {
                     <h3 className='heading'>{myData.username}</h3>
                 </Top>
                 <Info>
-                    <div className="Background"></div>
+                    <img src='' className="Background"/>
                     <div className="DPholder">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
                         <div className="BtnContainer">
@@ -110,6 +110,7 @@ export const Info = styled.div`
             width: 180px;
             height: 180px;
             margin: 0px 0px 0px 0px;
+            border-radius: 100px;
         }
     }
     .BtnContainer{
@@ -120,7 +121,7 @@ export const Info = styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin: 95px 0px 0px 22px;
+        margin: 110px 0px 0px 22px;
         h3{
             margin: 0px 0px 2px 0px;
             font-size: 25px;

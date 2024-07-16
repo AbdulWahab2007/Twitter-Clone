@@ -16,6 +16,8 @@ export default function UserProfile() {
     const [userData, setUserData] = useState({});
     const [followers, setFollowers] = useState(0);
     const [following, setFollowing] = useState(0);
+    const [dp, setDp] = useState('/src/Components/Icons/UserDP.svg');
+    const [coverPhoto, setCoverPhoto] = useState('https://wallpapers.com/images/featured/solid-grey-ew5fya1gh2bgc49b.jpg');
     const [userID, setUserID] = useState('');
     const [tweets, setTweets] = useState([]);
     const [followed, setFollowed] = useState(false);
@@ -28,6 +30,8 @@ export default function UserProfile() {
             setUserData(response.data)
             setFollowers(response.data.followers.length)
             setFollowing(response.data.following.length)
+            setDp(response.data.additionalData.profilePic)
+            setCoverPhoto(response.data.additionalData.coverPhoto)
             setDatejoined(`${response.data.createdAt.substring(0, 10)}`)
             const changedID = response.data._id
             setUserID(changedID)
@@ -84,9 +88,9 @@ export default function UserProfile() {
                     <h3 className='heading'>{userData.username}</h3>
                 </Top>
                 <Info>
-                    <div className="Background"></div>
+                    <img src={coverPhoto} className="Background" />
                     <div className="DPholder">
-                        <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+                        <img className='DP' src={dp} alt='' />
                         <div className="BtnContainer">
                             <Button $follow onClick={followed ? handleunfollowuser : handlefollowuser}>{followed ? "Unfollow" : "Follow"}</Button>
                         </div>
