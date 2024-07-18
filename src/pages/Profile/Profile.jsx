@@ -96,7 +96,6 @@ export const Info = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 425px;
     .Background{
         width: 100%;
         background-color: #b4bec2;
@@ -131,6 +130,8 @@ export const Info = styled.div`
             font-style: normal;
         }
         p{
+            display: flex;
+            align-items: center;
             margin: 2px 0px 5px 0px;
             font-size: 16px;
             font-family: "Montserrat", sans-serif;
@@ -138,6 +139,20 @@ export const Info = styled.div`
             font-weight: 500;
             font-style: normal;
             color: #565656;
+        }
+        .userhandle{
+            margin: -5px 0px 10px 0px;
+        }
+        .personalInfo{
+            display: flex;
+            width: 100%;
+            margin: 2px 0px 5px 0px;
+        }
+        .row{
+            margin: 0px 20px 0px 0px;
+        }
+        span{
+            margin: -2px 0px 0px -6px;
         }
     }
 `

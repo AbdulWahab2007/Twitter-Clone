@@ -13,26 +13,36 @@ export default function UserProfile() {
     const { name, loginusername, setName, setloginUsername } = useContext(Context);
     const [isActive, SetisActive] = useState(0);
     const [myData, setMyData] = useState({});
-    const [userData, setUserData] = useState({});
-    const [followers, setFollowers] = useState(0);
-    const [following, setFollowing] = useState(0);
-    const [dp, setDp] = useState('/src/Components/Icons/UserDP.svg');
-    const [coverPhoto, setCoverPhoto] = useState('https://wallpapers.com/images/featured/solid-grey-ew5fya1gh2bgc49b.jpg');
+    const [userData, setUserData] = useState({
+        following: [],
+        followers: [],
+        _id: "",
+        username: "",
+        email: "",
+        password: "",
+        createdAt: "",
+        __v: 0,
+        additionalData: {
+            additionalData: {
+                name: "",
+                bio: "",
+                location: "",
+                website: "",
+                dob: ""
+            },
+            profilePic: "/src/components/Icons/UserDP.svg",
+            coverPhoto: "/src/components/Icons/UserDP.svg"
+        }
+    });
     const [userID, setUserID] = useState('');
     const [tweets, setTweets] = useState([]);
     const [followed, setFollowed] = useState(false);
-    const [dateJoined, setDatejoined] = useState('');
     const localtoken = localStorage.getItem("token");
     const params = useParams();
     const { username } = params;
     const handleuserdata = async () => {
         const response = axios.get("http://localhost:5000/api/user/?username=" + username).then(function (response) {
             setUserData(response.data)
-            setFollowers(response.data.followers.length)
-            setFollowing(response.data.following.length)
-            setDp(response.data.additionalData.profilePic)
-            setCoverPhoto(response.data.additionalData.coverPhoto)
-            setDatejoined(`${response.data.createdAt.substring(0, 10)}`)
             const changedID = response.data._id
             setUserID(changedID)
             const myresponse = axios.get("http://localhost:5000/api/user/?username=" + name).then(function (myresponse) {
@@ -88,18 +98,24 @@ export default function UserProfile() {
                     <h3 className='heading'>{userData.username}</h3>
                 </Top>
                 <Info>
-                    <img src={coverPhoto} className="Background" />
+                    <img src={userData.additionalData.coverPhoto} className="Background" />
                     <div className="DPholder">
-                        <img className='DP' src={dp} alt='' />
+                        <img className='DP' src={userData.additionalData.profilePic} alt='' />
                         <div className="BtnContainer">
                             <Button $follow onClick={followed ? handleunfollowuser : handlefollowuser}>{followed ? "Unfollow" : "Follow"}</Button>
                         </div>
                     </div>
                     <div className="bio">
                         <h3>{userData.username}</h3>
-                        <p>{userData.email}</p>
-                        <p>Joined {dateJoined}</p>
-                        <p> {following} Following · {followers} Followers</p>
+                        <p className='userhandle'>@{userData.additionalData.additionalData.name}</p>
+                        <p>{userData.additionalData.additionalData.bio}</p>
+                        <div className="personalInfo">
+                            <p className='row'><span class="material-symbols-outlined">location_on</span>{userData.additionalData.additionalData.location}</p>
+                            <p className='row'><span class="material-symbols-outlined">link</span>{userData.additionalData.additionalData.website}</p>
+                            <p className='row'><span class="material-symbols-outlined">celebration</span>{userData.additionalData.additionalData.dob.substring(0, 15)}</p>
+                        </div>
+                        <p><span class="material-symbols-outlined">calendar_month</span>Joined {userData.createdAt.substring(0, 10)}</p>
+                        <p> <b>{userData.following.length}</b>&nbsp; Following · &nbsp;<b>{userData.followers.length}</b>&nbsp; Followers</p>
                     </div>
                 </Info>
                 <TopCategories>
@@ -110,7 +126,7 @@ export default function UserProfile() {
                 <div className="PostContainer">
                     {tweets.map((element, index) => {
                         return <div key={index}>
-                            <PostCard text={element.text} date={element.time} />
+                            <PostCard text={element.text} date={element.time} replies={element.replies.length} retweets={element.retweets.length} likes={element.hearts.length} />
                         </div>
 
                     })}
