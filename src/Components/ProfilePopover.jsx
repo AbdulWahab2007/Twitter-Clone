@@ -8,34 +8,41 @@ import '@radix-ui/colors/mauve.css';
 import '@radix-ui/colors/violet.css';
 
 
-const PopoverTag = () => (
-  <Popover.Root>
-    <GlobalCSS />
-    <Popover.Trigger asChild>
-      <IconButton className="IconButton" aria-label="Update dimensions">
-        <div className="left">
-          <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
-          <div className="Names">
-            <h3>Demo Name <img className='lock' src='/src/Components/Icons/Lock.svg' /></h3>
-            <p>@DemoUsername0011</p>
+export default function PopoverTag(props) {
+  const handlelogout = () => {
+    localStorage.clear()
+    window.location.reload();
+    console.log("clicked");
+  }
+  return (
+    <Popover.Root>
+      <GlobalCSS />
+      <Popover.Trigger asChild>
+        <IconButton className="IconButton" aria-label="Update dimensions">
+          <div className="left">
+            <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+            <div className="Names">
+              <h3>{props.name}<img className='lock' src='/src/Components/Icons/Lock.svg' /></h3>
+              <p>{props.handle}</p>
+            </div>
           </div>
-        </div>
-        <div className="right">
-          <img src='/src/Components/Icons/More.svg' alt="" />
-        </div>
+          <div className="right">
+            <img src='/src/Components/Icons/More.svg' alt="" />
+          </div>
 
-      </IconButton>
-    </Popover.Trigger>
-    <Popover.Portal>
-      <Popover.Content className='PopoverContent' sideOffset={5}>
-        <div className="optContainer">
-          <div className="opt"><p>Add an existing account</p></div>
-          <div className="opt"><p>Log out @DemoUsername0011</p></div>
-        </div>
-      </Popover.Content>
-    </Popover.Portal>
-  </Popover.Root>
-);
+        </IconButton>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content className='PopoverContent' sideOffset={5}>
+          <div className="optContainer">
+            <div className="opt"><p>Add an existing account</p></div>
+            <div className="opt" onClick={handlelogout}><p>Log out {props.handle}</p></div>
+          </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  )
+};
 
 export const IconButton = styled.button`
    font-family: inherit;
@@ -108,5 +115,3 @@ export const IconButton = styled.button`
     height: 22px;
   }
  `
-
-export default PopoverTag;

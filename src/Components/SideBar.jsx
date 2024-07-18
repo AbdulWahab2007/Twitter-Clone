@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Popover from './ProfilePopover'
 
 export default function SideBar() {
+  const name = localStorage.getItem("name")
   return (
     <>
       <SideBarContainer>
@@ -20,7 +21,7 @@ export default function SideBar() {
         <Anchor><Link to='/main/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</Link></Anchor>
         <Anchor><Link to='/more'><img src='/src/Components/Icons/More.svg' alt="" />More</Link></Anchor>
         <Button $post>Post</Button>
-        <Popover />
+        <Popover name={name} handle="@wahabishere" />
       </SideBarContainer>
     </>
   )

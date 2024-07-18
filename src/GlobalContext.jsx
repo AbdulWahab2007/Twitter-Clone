@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { toast } from 'sonner';
 
 export const Context = createContext()
@@ -11,6 +11,17 @@ export default function Provider(props) {
   if (token.length != 0) {
     localStorage.setItem("token", token);
   }
+  if (name.length != 0) {
+    localStorage.setItem("name", name);
+  }
+  const handletoken = () => {
+    if (localStorage.getItem("token") != null) {
+      setIsLoggedin(true)
+    }
+  }
+  useEffect(() => {
+    handletoken()
+  }, [])
   const handleUnavailable = () => {
     toast.info('This feature is currently UnAvailable')
   }

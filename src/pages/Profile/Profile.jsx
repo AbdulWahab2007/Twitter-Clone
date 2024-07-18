@@ -15,9 +15,9 @@ export default function Profile() {
     const [following, setFollowing] = useState(0);
     const [dateJoined, setDatejoined] = useState('');
     const [tweets, setTweets] = useState([]);
-    const { name } = useContext(Context)
+    const localname = localStorage.getItem("name")
     const handleuserdata = async () => {
-        const myresponse = axios.get("http://localhost:5000/api/user/?username=" + name).then(function (myresponse) {
+        const myresponse = axios.get("http://localhost:5000/api/user/?username=" + localname).then(function (myresponse) {
             setMyData(myresponse.data);
             setFollowers(myresponse.data.followers.length)
             setFollowing(myresponse.data.following.length)
@@ -25,7 +25,7 @@ export default function Profile() {
         })
     }
     const handleloadtweets = async () => {
-        const response = axios.get("http://localhost:5000/api/tweet?username=" + name).then(function (response) {
+        const response = axios.get("http://localhost:5000/api/tweet?username=" + localname).then(function (response) {
             setTweets(response.data)
         })
     }
@@ -45,7 +45,7 @@ export default function Profile() {
                     <h3 className='heading'>{myData.username}</h3>
                 </Top>
                 <Info>
-                    <img src='' className="Background"/>
+                    <img src='' className="Background" />
                     <div className="DPholder">
                         <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
                         <div className="BtnContainer">
