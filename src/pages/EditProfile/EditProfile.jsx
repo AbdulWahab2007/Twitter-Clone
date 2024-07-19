@@ -22,7 +22,6 @@ export default function EditProfile() {
 
     const handleSave = async () => {
         if (bio.length > 1 && handle.length <= 14 && location.length >= 4 && dob.length >= 8) {
-            toast.success("done")
             const data = {
                 "additionalData": {
                     "name": handle,
@@ -30,9 +29,7 @@ export default function EditProfile() {
                     "location": location,
                     "website": weblink,
                     "dob": dob
-                },
-                "profilePic": dp,
-                "coverPhoto": coverPhoto
+                }
             }
             const response = await axios.post("http://localhost:5000/api/user/editprofile", data, {
                 headers: {
@@ -46,6 +43,26 @@ export default function EditProfile() {
         } else {
             toast.error("Some of your data is missing OR Invalid, Please check again")
         }
+
+        let formData = new FormData();
+        formData.append("image", dp)
+        formData.append("type", "Profile")
+        const response = await axios.post("http://localhost:5000/api/user/upload", formData, {
+            headers: {
+                'Authorization': "Bearer " + localtoken
+            }
+        })
+        let formData2 = new FormData();
+        formData2.append("image", coverPhoto)
+        formData2.append("type", "Cover")
+        const response2 = await axios.post("http://localhost:5000/api/user/upload", formData2, {
+            headers: {
+                'Authorization': "Bearer " + localtoken
+            }
+        })
+        if (response.status == 200 || response2.status == 200) {
+            toast.success("Image changed")
+        }
     }
 
     return (
@@ -55,7 +72,7 @@ export default function EditProfile() {
                     <Link onClick={goBack} className="Home">
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
-                    <h3 className='heading'>Edit your Profile</h3>
+                    <h3 className='heading'>Setup your Profile</h3>
                 </Top>
                 <Bottom>
                     <h1>Choost your profile picture</h1>
