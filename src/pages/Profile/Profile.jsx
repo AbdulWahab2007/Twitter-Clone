@@ -10,18 +10,32 @@ import { Context } from '/src/GlobalContext'
 
 export default function Profile() {
     const [isActive, SetisActive] = useState(0);
-    const [myData, setMyData] = useState({});
-    const [followers, setFollowers] = useState(0);
-    const [following, setFollowing] = useState(0);
-    const [dateJoined, setDatejoined] = useState('');
+    const [myData, setMyData] = useState({
+        following: [],
+        followers: [],
+        _id: "",
+        username: "",
+        email: "",
+        password: "",
+        createdAt: "",
+        __v: 0,
+        additionalData: {
+            additionalData: {
+                name: "",
+                bio: "",
+                location: "",
+                website: "",
+                dob: ""
+            },
+            profilePic: "/src/components/Icons/UserDP.svg",
+            coverPhoto: "/src/components/Icons/UserDP.svg"
+        }
+    });
     const [tweets, setTweets] = useState([]);
     const localname = localStorage.getItem("name")
     const handleuserdata = async () => {
         const myresponse = axios.get("http://localhost:5000/api/user/?username=" + localname).then(function (myresponse) {
             setMyData(myresponse.data);
-            setFollowers(myresponse.data.followers.length)
-            setFollowing(myresponse.data.following.length)
-            setDatejoined(`${myresponse.data.createdAt.substring(0, 10)}`)
         })
     }
     const handleloadtweets = async () => {
@@ -45,18 +59,39 @@ export default function Profile() {
                     <h3 className='heading'>{myData.username}</h3>
                 </Top>
                 <Info>
-                    <img src='' className="Background" />
+                    {myData.additionalData ? (
+                        <img src={myData.additionalData.coverPhoto} className="Background" alt="Image" />
+                    ) : (
+                        <img src="/src/components/Icons/UserDP.svg" className="Background" alt="Fallback Image" />
+                    )}
                     <div className="DPholder">
-                        <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+                        {myData.additionalData ? (
+                            <img src={myData.additionalData.profilePic} className="DP" alt="Image" />
+                        ) : (
+                            <img src="/src/components/Icons/UserDP.svg" className="DP" alt="Fallback Image" />
+                        )}
                         <div className="BtnContainer">
-                            <Button $follow>Setup Profile</Button>
+                            <Link className='edit' to="/editprofile">
+                                <Button $follow>Setup Profile</Button>
+                            </Link>
                         </div>
                     </div>
                     <div className="bio">
                         <h3>{myData.username}</h3>
-                        <p>{myData.email}</p>
-                        <p>Joined {dateJoined}</p>
-                        <p>{following} Following · {followers} Followers</p>
+                        {myData.additionalData ? (
+                            <>
+                                <p className='userhandle'>@{myData.additionalData.additionalData.name}</p>
+                                <p>{myData.additionalData.additionalData.bio}</p>
+                                <div className="personalInfo">
+                                    <p className='row'><span className="material-symbols-outlined">location_on</span>{myData.additionalData.additionalData.location}</p>
+                                    <p className='row'><span className="material-symbols-outlined">link</span>{myData.additionalData.additionalData.website}</p>
+                                    <p className='row'><span className="material-symbols-outlined">celebration</span>{myData.additionalData.additionalData.dob.substring(0, 15)}</p>
+                                </div></>
+                        ) : (
+                            <></>
+                        )}
+                        <p><span className="material-symbols-outlined">calendar_month</span>Joined {myData.createdAt.substring(0, 10)}</p>
+                        <p> <b>{myData.following.length}</b>&nbsp; Following · &nbsp;<b>{myData.followers.length}</b>&nbsp; Followers</p>
                     </div>
                 </Info>
                 <TopCategories>
@@ -111,6 +146,9 @@ export const Info = styled.div`
             margin: 0px 0px 0px 0px;
             border-radius: 100px;
         }
+    }
+    .edit{
+        text-decoration: none;
     }
     .BtnContainer{
         width: 30%;

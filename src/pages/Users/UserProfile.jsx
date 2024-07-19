@@ -10,7 +10,8 @@ import { Context } from '/src/GlobalContext'
 import { toast } from 'sonner';
 
 export default function UserProfile() {
-    const { name, loginusername, setName, setloginUsername } = useContext(Context);
+    const { loginusername, setName, setloginUsername } = useContext(Context);
+    const name = localStorage.getItem("name")
     const [isActive, SetisActive] = useState(0);
     const [myData, setMyData] = useState({});
     const [userData, setUserData] = useState({
@@ -98,23 +99,38 @@ export default function UserProfile() {
                     <h3 className='heading'>{userData.username}</h3>
                 </Top>
                 <Info>
-                    <img src={userData.additionalData.coverPhoto} className="Background" />
+                    {userData.additionalData ? (
+                        <img src={userData.additionalData.coverPhoto} className="Background" alt="Image" />
+                    ) : (
+                        <img src="/src/components/Icons/UserDP.svg" className="Background" alt="Fallback Image" />
+                    )}
                     <div className="DPholder">
-                        <img className='DP' src={userData.additionalData.profilePic} alt='' />
+                        {userData.additionalData ? (
+                            <img src={userData.additionalData.profilePic} className="DP" alt="Image" />
+                        ) : (
+                            <img src="/src/components/Icons/UserDP.svg" className="DP" alt="Fallback Image" />
+                        )}
                         <div className="BtnContainer">
                             <Button $follow onClick={followed ? handleunfollowuser : handlefollowuser}>{followed ? "Unfollow" : "Follow"}</Button>
                         </div>
                     </div>
                     <div className="bio">
                         <h3>{userData.username}</h3>
-                        <p className='userhandle'>@{userData.additionalData.additionalData.name}</p>
-                        <p>{userData.additionalData.additionalData.bio}</p>
-                        <div className="personalInfo">
-                            <p className='row'><span class="material-symbols-outlined">location_on</span>{userData.additionalData.additionalData.location}</p>
-                            <p className='row'><span class="material-symbols-outlined">link</span>{userData.additionalData.additionalData.website}</p>
-                            <p className='row'><span class="material-symbols-outlined">celebration</span>{userData.additionalData.additionalData.dob.substring(0, 15)}</p>
-                        </div>
-                        <p><span class="material-symbols-outlined">calendar_month</span>Joined {userData.createdAt.substring(0, 10)}</p>
+                        {userData.additionalData ? (
+                            <>
+                                <p className='userhandle'>@{userData.additionalData.additionalData.name}</p>
+                                <p>{userData.additionalData.additionalData.bio}</p>
+                                <div className="personalInfo">
+                                    <p className='row'><span className="material-symbols-outlined">location_on</span>{userData.additionalData.additionalData.location}</p>
+                                    <p className='row'><span className="material-symbols-outlined">link</span>{userData.additionalData.additionalData.website}</p>
+                                    <p className='row'><span className="material-symbols-outlined">celebration</span>{userData.additionalData.additionalData.dob.substring(0, 15)}</p>
+                                </div>
+                            </>
+                        ) : (
+
+                            <></>
+                        )}
+                        <p><span className="material-symbols-outlined">calendar_month</span>Joined {userData.createdAt.substring(0, 10)}</p>
                         <p> <b>{userData.following.length}</b>&nbsp; Following · &nbsp;<b>{userData.followers.length}</b>&nbsp; Followers</p>
                     </div>
                 </Info>

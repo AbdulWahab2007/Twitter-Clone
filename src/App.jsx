@@ -18,6 +18,7 @@ import Provider from './GlobalContext'
 import UserProfile from '/src/pages/Users/UserProfile.jsx'
 import { Toaster } from 'sonner';
 import Search from './pages/Search/Search'
+import EditProfile from './pages/EditProfile/EditProfile'
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
       <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<WelcomePage />}>
+        </Route>
+        <Route path="/editprofile" element={<EditProfile />}>
         </Route>
         <Route path="/main" element={<MainSection />}>
           <Route path="home" element={<MidSection />}></Route>

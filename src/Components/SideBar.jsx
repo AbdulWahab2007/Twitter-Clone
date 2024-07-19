@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Button } from './Dialog'
 import { Link } from 'react-router-dom'
 import Popover from './ProfilePopover'
+import { Context } from '/src/GlobalContext'
 
 export default function SideBar() {
   const name = localStorage.getItem("name")
+  const { handleUnavailable } = useContext(Context)
   return (
     <>
       <SideBarContainer>
@@ -13,13 +15,13 @@ export default function SideBar() {
         <Anchor><Link to='/main/home'><img src='/src/Components/Icons/Home.svg' alt="" />Home</Link></Anchor>
         <Anchor><Link to='/main/explore'><img src='/src/Components/Icons/Explore.svg' alt="" />Explore</Link></Anchor>
         <Anchor><Link to='/notifications'><img src='/src/Components/Icons/Notifications.svg' alt="" />Notifications</Link></Anchor>
-        <Anchor><Link to='/messages'><img src='/src/Components/Icons/Messages.svg' alt="" />Messages</Link></Anchor>
-        <Anchor><Link to='/grok'><img src='/src/Components/Icons/Grok.svg' alt="" />Grok</Link></Anchor>
-        <Anchor><Link to='/lists'><img src='/src/Components/Icons/Lists.svg' alt="" />Lists</Link></Anchor>
-        <Anchor><Link to='/communities'><img src='/src/Components/Icons/Communities.svg' alt="" />Communities</Link></Anchor>
-        <Anchor><Link to='/premium'><img src='/src/Components/Icons/Premium.svg' alt="" />Premium</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link><img src='/src/Components/Icons/Messages.svg' alt="" />Messages</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/Grok.svg' alt="" />Grok</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/Lists.svg' alt="" />Lists</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/Communities.svg' alt="" />Communities</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/Premium.svg' alt="" />Premium</Link></Anchor>
         <Anchor><Link to='/main/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</Link></Anchor>
-        <Anchor><Link to='/more'><img src='/src/Components/Icons/More.svg' alt="" />More</Link></Anchor>
+        <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/More.svg' alt="" />More</Link></Anchor>
         <Button $post>Post</Button>
         <Popover name={name} handle="@wahabishere" />
       </SideBarContainer>

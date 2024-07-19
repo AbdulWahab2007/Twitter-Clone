@@ -11,7 +11,7 @@ import '@radix-ui/colors/violet.css';
 export default function PopoverTag(props) {
   const handlelogout = () => {
     localStorage.clear()
-    window.location.reload();
+    window.location.reload()
     console.log("clicked");
   }
   return (
