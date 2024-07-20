@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Top } from '../Replies/PostReplies'
 import { Button } from '../../components/Dialog'
@@ -9,6 +9,10 @@ import axios from 'axios';
 import { Context } from '/src/GlobalContext'
 
 export default function Profile() {
+    const history = useNavigate()
+    const goBack = () => {
+        history(-1);
+    };
     const [isActive, SetisActive] = useState(0);
     const [myData, setMyData] = useState({
         following: [],
@@ -53,7 +57,7 @@ export default function Profile() {
         <>
             <Container>
                 <Top>
-                    <Link className="Home" to="/main/home">
+                    <Link className="Home" onClick={goBack}>
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>{myData.username}</h3>
@@ -102,7 +106,7 @@ export default function Profile() {
                 <div className="PostContainer">
                     {tweets.map((element, index) => {
                         return <div key={index}>
-                            <PostCard text={element.text} date={element.time} replies={element.replies.length} retweets={element.retweets.length} likes={element.hearts.length} />
+                            <PostCard dp={myData.additionalData.profilePic} name={myData.username} handle={myData.additionalData.additionalData.name} id={element._id} text={element.text} date={element.time} replies={element.replies.length} retweets={element.retweets.length} likes={element.hearts.length} />
                         </div>
 
                     })}

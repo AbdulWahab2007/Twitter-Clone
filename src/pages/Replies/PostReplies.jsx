@@ -1,25 +1,75 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PostCard from '../../components/PostCard'
 import { Button } from '/src/components/Dialog'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Context } from '/src/GlobalContext'
+import axios from 'axios'
 
 export default function PostReplies() {
+    const history = useNavigate()
+    const goBack = () => {
+        history(-1);
+    };
     const { isLoggedin, setIsLoggedin } = useContext(Context);
     if (!isLoggedin) {
         return <Navigate to="/" />;
     }
+    const [tweet, setTweet] = useState({
+        "hearts": [],
+        "retweets": [],
+        "replies": [],
+        "_id": "",
+        "text": "",
+        "userID": "",
+        "time": "",
+        "repliedTo": null,
+        "__v": 0
+    });
+    const [userData, setUserData] = useState({
+        following: [],
+        followers: [],
+        _id: "",
+        username: "",
+        email: "",
+        password: "",
+        createdAt: "",
+        __v: 0,
+        additionalData: {
+            additionalData: {
+                name: "",
+                bio: "",
+                location: "",
+                website: "",
+                dob: ""
+            },
+            profilePic: "/src/components/Icons/UserDP.svg",
+            coverPhoto: "/src/components/Icons/UserDP.svg"
+        }
+    });
+    const params = useParams();
+    const { id } = params;
+    const handlegetTweet = () => {
+        const response = axios.get("http://localhost:5000/api/tweet/" + id).then(function (response) {
+            setTweet(response.data)
+            const response2 = axios.get("http://localhost:5000/api/user/?userID=" + response.data.userID).then(function (response2) {
+                setUserData(response2.data)
+            })
+        })
+    }
+    useEffect(() => {
+        handlegetTweet()
+    }, [])
     return (
         <>
             <Container>
                 <Top>
-                    <Link className="Home" to="/main/home">
+                    <Link className="Home" onClick={goBack}>
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>Post</h3>
                 </Top>
-                <PostCard text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sapiente voluptas quae nobis culpa velit delectus sit nulla accusamus dolorum ex, ducimus, veritatis iusto ratione porro! Vitae ipsum sint nostrum?"} />
+                <PostCard dp={userData.additionalData.profilePic} name={userData.username} handle={userData.additionalData.additionalData.name} text={tweet.text} date={tweet.time} replies={tweet.replies.length} retweets={tweet.retweets.length} likes={tweet.hearts.length} />
                 <Reply>
                     <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
                     <textarea placeholder='Post your reply' name="" id=""></textarea>
@@ -27,7 +77,7 @@ export default function PostReplies() {
                         <Button $post1>Reply</Button>
                     </div>
                 </Reply>
-                <PostCard text={"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, esse!"} />
+                <PostCard text={tweet.text} date={tweet.time} replies={tweet.replies.length} retweets={tweet.retweets.length} likes={tweet.hearts.length} />
             </Container >
         </>
     )

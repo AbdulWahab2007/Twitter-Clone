@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Info } from '../Profile/Profile'
 import { Top } from '../Replies/PostReplies'
 import { TopCategories } from '../Home/MidSection'
@@ -10,6 +10,10 @@ import { Context } from '/src/GlobalContext'
 import { toast } from 'sonner';
 
 export default function UserProfile() {
+    const history = useNavigate()
+    const goBack = () => {
+        history(-1);
+    };
     const { loginusername, setName, setloginUsername } = useContext(Context);
     const name = localStorage.getItem("name")
     const [isActive, SetisActive] = useState(0);
@@ -93,7 +97,7 @@ export default function UserProfile() {
         <>
             <Container>
                 <Top>
-                    <Link className="Home" to="/main/home">
+                    <Link className="Home" onClick={goBack}>
                         <span className='SpanBack'><span className="material-symbols-outlined back">arrow_left_alt</span></span>
                     </Link>
                     <h3 className='heading'>{userData.username}</h3>
@@ -142,7 +146,7 @@ export default function UserProfile() {
                 <div className="PostContainer">
                     {tweets.map((element, index) => {
                         return <div key={index}>
-                            <PostCard text={element.text} date={element.time} replies={element.replies.length} retweets={element.retweets.length} likes={element.hearts.length} />
+                            <PostCard dp={userData.additionalData.profilePic} name={userData.username} handle={userData.additionalData.additionalData.name} id={element._id} text={element.text} date={element.time} replies={element.replies.length} retweets={element.retweets.length} likes={element.hearts.length} />
                         </div>
 
                     })}

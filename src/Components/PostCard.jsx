@@ -19,16 +19,16 @@ export default function PostCard(props) {
     <>
       <Container>
         <ProfileContainer>
-          <img className='DP' src='/src/Components/Icons/UserDP.svg' alt='' />
+          <img className='DP' src={props.dp} alt='' />
         </ProfileContainer>
         <Content>
           <Info>
-            <h3>Demo Name</h3>
-            <p className='InfoP'>@DemoUsername0011</p>
+            <h3>{props.name}</h3>
+            <p className='InfoP'>{props.handle}</p>
             <p className='dot'>·</p>
             <p className='InfoP'>{time}</p>
           </Info>
-          <Link className="Replies" to="/main/replies">
+          <Link className="Replies" to={"/main/replies/" + props.id}>
             <PostText>
               <p className='text'>{props.text}</p>
             </PostText>
@@ -79,6 +79,7 @@ const ProfileContainer = styled.div`
           .DP{
                 width: 45px;
                 height: 45px;
+                border-radius: 100px;
             }
           .DP:hover{
             cursor: pointer;

@@ -19,7 +19,9 @@ export default function EditProfile() {
     const [weblink, setWebLink] = useState('');
     const [dob, setDob] = useState('');
     const localtoken = localStorage.getItem("token")
-
+    if (handle.length > 0) {
+        localStorage.setItem("handle", handle)
+    }
     const handleSave = async () => {
         if (bio.length > 1 && handle.length <= 14 && location.length >= 4 && dob.length >= 8) {
             const data = {

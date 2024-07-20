@@ -32,9 +32,9 @@ export default function App() {
         <Route path="/main" element={<MainSection />}>
           <Route path="home" element={<MidSection />}></Route>
           <Route path="explore" element={<Search />}></Route>
-          <Route path="replies" element={<PostReplies />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="user/:username" element={<UserProfile />}></Route>
+          <Route path="replies/:id" element={<PostReplies />}></Route>
         </Route>
       </Routes>
 

@@ -7,6 +7,7 @@ import { Context } from '/src/GlobalContext'
 
 export default function SideBar() {
   const name = localStorage.getItem("name")
+  const handle = localStorage.getItem("handle")
   const { handleUnavailable } = useContext(Context)
   return (
     <>
@@ -23,7 +24,7 @@ export default function SideBar() {
         <Anchor><Link to='/main/profile'><img src='/src/Components/Icons/Profile.svg' alt="" />Profile</Link></Anchor>
         <Anchor onClick={handleUnavailable}><Link ><img src='/src/Components/Icons/More.svg' alt="" />More</Link></Anchor>
         <Button $post>Post</Button>
-        <Popover name={name} handle="@wahabishere" />
+        <Popover name={name} handle={"@" + handle} />
       </SideBarContainer>
     </>
   )
