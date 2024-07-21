@@ -112,5 +112,5 @@ const GlobalStyle = createGlobalStyle`
       transform: translateX(0);
     }
   } 
-`
+`;
 export default GlobalStyle;

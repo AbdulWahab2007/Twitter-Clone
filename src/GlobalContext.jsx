@@ -1,13 +1,13 @@
-import React, { createContext, useState, useEffect } from 'react'
-import { toast } from 'sonner';
+import React, { createContext, useState, useEffect } from "react";
+import { toast } from "sonner";
 
-export const Context = createContext()
+export const Context = createContext();
 
 export default function Provider(props) {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [name, setName] = useState('');
-  const [token, setToken] = useState('');
-  const [loginusername, setloginUsername] = useState('');
+  const [name, setName] = useState("");
+  const [token, setToken] = useState("");
+  const [loginusername, setloginUsername] = useState("");
   if (token.length != 0) {
     localStorage.setItem("token", token);
   }
@@ -16,18 +16,30 @@ export default function Provider(props) {
   }
   const handletoken = () => {
     if (localStorage.getItem("token") != null) {
-      setIsLoggedin(true)
+      setIsLoggedin(true);
     }
-  }
+  };
   useEffect(() => {
-    handletoken()
-  }, [])
+    handletoken();
+  }, []);
   const handleUnavailable = () => {
-    toast.info('This feature is currently UnAvailable')
-  }
+    toast.info("This feature is currently UnAvailable");
+  };
   return (
-    <Context.Provider value={{ isLoggedin, setIsLoggedin, token, setToken, handleUnavailable, loginusername, setloginUsername, name, setName }}>
+    <Context.Provider
+      value={{
+        isLoggedin,
+        setIsLoggedin,
+        token,
+        setToken,
+        handleUnavailable,
+        loginusername,
+        setloginUsername,
+        name,
+        setName,
+      }}
+    >
       {props.children}
     </Context.Provider>
-  )
+  );
 }
