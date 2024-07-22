@@ -1,14 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "./Dialog";
 import { Link } from "react-router-dom";
 import Popover from "./ProfilePopover";
 import { Context } from "/src/GlobalContext";
+import axios from "axios";
 
 export default function SideBar() {
   const name = localStorage.getItem("name");
   const handle = localStorage.getItem("handle");
   const { handleUnavailable } = useContext(Context);
+  const [dp, setDp] = useState("/src/components/Icons/UserDP.svg");
+  const handleuserdata = async () => {
+    const myresponse = axios
+      .get("http://localhost:5000/api/user/?username=" + name)
+      .then(function (myresponse) {
+        setDp(myresponse.data.additionalData.profilePic);
+      });
+  };
+  useEffect(() => {
+    handleuserdata();
+  }, []);
   return (
     <>
       <SideBarContainer>
@@ -80,7 +92,7 @@ export default function SideBar() {
           </Link>
         </Anchor>
         <Button $post>Post</Button>
-        <Popover name={name} handle={"@" + handle} />
+        <Popover dp={dp} name={name} handle={"@" + handle} />
       </SideBarContainer>
     </>
   );

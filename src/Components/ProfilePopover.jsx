@@ -1,6 +1,5 @@
 import React from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import styled from "styled-components";
 import GlobalCSS from "/src/GlobalCSS";
 import "@radix-ui/colors/black-alpha.css";
@@ -11,7 +10,6 @@ export default function PopoverTag(props) {
   const handlelogout = () => {
     localStorage.clear();
     window.location.reload();
-    console.log("clicked");
   };
   return (
     <Popover.Root>
@@ -19,7 +17,7 @@ export default function PopoverTag(props) {
       <Popover.Trigger asChild>
         <IconButton className="IconButton" aria-label="Update dimensions">
           <div className="left">
-            <img className="DP" src="/src/Components/Icons/UserDP.svg" alt="" />
+            <img className="DP" src={props.dp} alt="" />
             <div className="Names">
               <h3>
                 {props.name}
@@ -81,6 +79,7 @@ export const IconButton = styled.button`
     width: 45px;
     height: 45px;
     margin: 0px 10px 0px 0px;
+    border-radius: 100px;
   }
   .Names {
     display: flex;

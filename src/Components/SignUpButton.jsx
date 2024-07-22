@@ -9,6 +9,7 @@ import * as styles from "./Dialog";
 import axios from "axios";
 import { Context } from "/src/GlobalContext";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpButton() {
   const { isLoggedin, setIsLoggedin, name, setName } = useContext(Context);
@@ -16,6 +17,7 @@ export default function SignUpButton() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
+  const navigate = useNavigate();
 
   const handlesignup = async () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,7 +36,13 @@ export default function SignUpButton() {
             toast.error("User Alredy Exists");
           });
         if (response.status == 200) {
+          const myresponse = axios
+            .get("http://localhost:5000/api/user/?username=" + name)
+            .then(function (myresponse) {
+              localStorage.setItem("myID", myresponse.data._id);
+            });
           setIsLoggedin(true);
+          navigate("/editprofile");
           setToken(response.data.token);
           toast.success("Successfully logged in");
         }

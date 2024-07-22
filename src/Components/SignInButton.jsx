@@ -36,6 +36,10 @@ export default function SignInButton() {
         .get("http://localhost:5000/api/user/?username=" + loginusername)
         .then(function (myresponse) {
           localStorage.setItem("myID", myresponse.data._id);
+          localStorage.setItem(
+            "handle",
+            myresponse.data.additionalData.additionalData.name
+          );
         });
       setIsLoggedin(true);
       setToken(response.data.token);

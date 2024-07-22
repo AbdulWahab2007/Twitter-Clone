@@ -43,7 +43,6 @@ export default function PostCard(props) {
     if (response.status == 200) {
       setLikes(likes + 1);
       setLiked(true);
-      toast.success("liked");
     }
   };
   const handleUnlike = async () => {
@@ -63,7 +62,6 @@ export default function PostCard(props) {
     if (response.status == 200) {
       setLikes(likes - 1);
       setLiked(false);
-      toast.success("unliked");
     }
   };
   useEffect(() => {

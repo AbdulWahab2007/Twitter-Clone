@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 
 export default function RightBar() {
   const [users, setUsers] = useState([]);
+  const myID = localStorage.getItem("myID");
   const ShowUsers = () => {
     const response = axios
       .get("http://localhost:5000/api/user/randomuser")
       .then(function (response) {
-        setUsers(response.data);
+        const filteredUsers = response.data.filter((user) => user._id !== myID);
+        setUsers(filteredUsers);
       });
   };
   useEffect(() => {
@@ -42,7 +44,8 @@ export default function RightBar() {
                 <Link className="link" to={"/main/user/" + element.username}>
                   <ProfileSuggestion
                     name={element.username}
-                    email={element.email}
+                    handle={element.additionalData.additionalData.name}
+                    dp={element.additionalData.profilePic}
                   />
                 </Link>
               </div>

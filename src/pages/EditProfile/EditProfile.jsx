@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as styles from "/src/components/Dialog.jsx";
 import axios from "axios";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
   const [dp, setDp] = useState(null);
@@ -15,6 +16,7 @@ export default function EditProfile() {
   const [weblink, setWebLink] = useState("");
   const [dob, setDob] = useState("");
   const localtoken = localStorage.getItem("token");
+  const navigate = useNavigate();
   if (handle.length > 0) {
     localStorage.setItem("handle", handle);
   }
@@ -46,6 +48,7 @@ export default function EditProfile() {
       );
       if (response.status == 200) {
         toast.success("Info updated successfully");
+        navigate("/main/profile");
       }
     } else {
       toast.error(
@@ -79,6 +82,7 @@ export default function EditProfile() {
     );
     if (response.status == 200 || response2.status == 200) {
       toast.success("Image changed");
+      navigate("/main/profile");
     }
   };
 
@@ -86,7 +90,7 @@ export default function EditProfile() {
     <>
       <Container>
         <Top>
-          <Link to-="/main/home" className="Home">
+          <Link to="/main/home" className="Home">
             <span className="SpanBack">
               <span className="material-symbols-outlined back">
                 arrow_left_alt

@@ -3,7 +3,6 @@ import { IconButton } from "./ProfilePopover";
 import { Button } from "./Dialog";
 
 export default function ProfileSuggestion(props) {
-  const email = `${props.email.substring(0, 19)}...`;
   return (
     <>
       <IconButton
@@ -12,10 +11,10 @@ export default function ProfileSuggestion(props) {
         aria-label="Update dimensions"
       >
         <div className="left">
-          <img className="DP" src="/src/Components/Icons/UserDP.svg" alt="" />
+          <img className="DP" src={props.dp} alt="" />
           <div className="Names">
             <h3>{props.name}</h3>
-            <p>{email}</p>
+            <p>{"@" + props.handle}</p>
           </div>
         </div>
         <div className="right">

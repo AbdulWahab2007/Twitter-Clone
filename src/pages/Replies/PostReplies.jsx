@@ -15,7 +15,6 @@ export default function PostReplies() {
   if (!isLoggedin) {
     return <Navigate to="/" />;
   }
-  //stooooooooooooooooooooooooooop
   const [tweet, setTweet] = useState({
     hearts: [],
     retweets: [],

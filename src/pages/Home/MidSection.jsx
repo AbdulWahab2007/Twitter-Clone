@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Dialog";
 import PostCard from "../../components/PostCard";
@@ -9,8 +9,17 @@ import { toast } from "sonner";
 export default function MidSection() {
   const [isActive, SetisActive] = useState(0);
   const [text, setText] = useState("");
+  const [dp, setDp] = useState("");
   const { token, setToken } = useContext(Context);
   const localtoken = localStorage.getItem("token");
+  const handleuserdata = async () => {
+    const localname = localStorage.getItem("name");
+    const myresponse = axios
+      .get("http://localhost:5000/api/user/?username=" + localname)
+      .then(function (myresponse) {
+        setDp(myresponse.data.additionalData.profilePic);
+      });
+  };
   const handleposttweet = async () => {
     if (text.length != 0) {
       const data = { text };
@@ -38,11 +47,12 @@ export default function MidSection() {
     const data = {};
     const response = axios
       .get("http://localhost:5000/api/user/randomuser", data)
-      .then(function (response) {
-        console.log(response.data);
-      });
+      .then(function (response) {});
   };
 
+  useEffect(() => {
+    handleuserdata();
+  }, []);
   return (
     <>
       <Container>
@@ -62,7 +72,7 @@ export default function MidSection() {
         </TopCategories>
         <PostSection>
           <div className="top">
-            <img className="DP" src="/src/Components/Icons/UserDP.svg" alt="" />
+            <img className="DP" src={dp} alt="" />
             <textarea
               value={text}
               onChange={(e) => {
@@ -192,6 +202,7 @@ const PostSection = styled.div`
   .DP {
     width: 45px;
     height: 45px;
+    border-radius: 100px;
     margin: -10px 0px 0px 10px;
   }
   textarea {
