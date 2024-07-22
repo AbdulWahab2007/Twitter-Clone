@@ -14,9 +14,37 @@ export default function PostCard(props) {
   const localmyID = localStorage.getItem("myID");
   const [liked, setLiked] = useState(props.liked);
   const [likes, setLikes] = useState("5");
+  const [replyPoster, setReplyPoster] = useState({
+    following: [],
+    followers: [],
+    _id: "",
+    username: "",
+    email: "",
+    password: "",
+    createdAt: "",
+    __v: 0,
+    additionalData: {
+      additionalData: {
+        name: "",
+        bio: "",
+        location: "",
+        website: "",
+        dob: "",
+      },
+      profilePic: "/src/components/Icons/UserDP.svg",
+      coverPhoto: "/src/components/Icons/UserDP.svg",
+    },
+  });
   if (!isLoggedin) {
     return <Navigate to="/" />;
   }
+  const handlereplier = () => {
+    const response = axios
+      .get("http://localhost:5000/api/user/?userID=" + props.userID)
+      .then(function (response) {
+        setReplyPoster(response.data);
+      });
+  };
   const handletweet = async () => {
     const response = axios
       .get("http://localhost:5000/api/tweet/" + props.id)
@@ -66,6 +94,9 @@ export default function PostCard(props) {
   };
   useEffect(() => {
     handletweet();
+    if (props.userID) {
+      handlereplier();
+    }
   }, []);
   useEffect(() => {
     setLikes(props.likes);
@@ -77,12 +108,24 @@ export default function PostCard(props) {
     <>
       <Container>
         <ProfileContainer>
-          <img className="DP" src={props.dp} alt="" />
+          <img
+            className="DP"
+            src={
+              props.dp != null
+                ? props.dp
+                : replyPoster.additionalData.profilePic
+            }
+            alt=""
+          />
         </ProfileContainer>
         <Content>
           <Info>
-            <h3>{props.name}</h3>
-            <p className="InfoP">{props.handle}</p>
+            <h3>{props.name != null ? props.name : replyPoster.username}</h3>
+            <p className="InfoP">
+              {props.handle != null
+                ? props.handle
+                : replyPoster.additionalData.additionalData.name}
+            </p>
             <p className="dot">·</p>
             <p className="InfoP">{time}</p>
           </Info>
@@ -94,9 +137,12 @@ export default function PostCard(props) {
           <PostOpts>
             <div className="left">
               <span className="IconContainer">
-                <span className="material-symbols-outlined">chat_bubble</span>
-                <p>{props.replies >= 0 ? props.replies : "#"}</p>
+                <Link className="RepliesNum" to={"/main/replies/" + props.id}>
+                  <span className="material-symbols-outlined">chat_bubble</span>
+                  <p>{props.replies >= 0 ? props.replies : "#"}</p>
+                </Link>
               </span>
+
               <span className="RepostIconContainer">
                 <span className="material-symbols-outlined repost">
                   autorenew
@@ -135,7 +181,6 @@ const Container = styled.div`
   border-bottom: 1px solid #e7e7e7;
   &:hover {
     background-color: #f1f1f1;
-    cursor: pointer;
   }
   .Replies {
     display: flex;
@@ -143,6 +188,18 @@ const Container = styled.div`
     width: 100%;
     text-decoration: none;
     color: black;
+  }
+  .Replies:hover {
+    cursor: pointer;
+  }
+  .RepliesNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: #565656;
+    border-radius: 15px;
   }
 `;
 

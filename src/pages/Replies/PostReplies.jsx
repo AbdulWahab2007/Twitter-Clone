@@ -5,13 +5,15 @@ import { Button } from "/src/components/Dialog";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "/src/GlobalContext";
 import axios from "axios";
+import { toast } from "sonner";
 
 export default function PostReplies() {
   const history = useNavigate();
   const goBack = () => {
     history(-1);
   };
-  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  const { isLoggedin, setIsLoggedin, myDP } = useContext(Context);
+  const localtoken = localStorage.getItem("token");
   if (!isLoggedin) {
     return <Navigate to="/" />;
   }
@@ -49,6 +51,8 @@ export default function PostReplies() {
   });
   const localmyID = localStorage.getItem("myID");
   const [liked, setLiked] = useState(false);
+  const [text, setText] = useState("");
+  const [tweetReplies, setTweetReplies] = useState([]);
   const params = useParams();
   const { id } = params;
   const handlegetTweet = () => {
@@ -65,8 +69,43 @@ export default function PostReplies() {
           });
       });
   };
+  const handlegetreplies = () => {
+    const data = { tweetID: id };
+    const response = axios
+      .post("http://localhost:5000/api/tweet/getReplies", data)
+      .then(function (response) {
+        setTweetReplies(response.data);
+      });
+  };
+  const handlepostreply = async () => {
+    if (text.length != 0) {
+      const data = {
+        text: text,
+        orgTweetID: tweet._id,
+      };
+      const response = await axios
+        .post("http://localhost:5000/api/tweet/reply", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localtoken,
+          },
+        })
+        .catch(function (error) {
+          toast.error(
+            "There might be a problem in the server, Try again later!"
+          );
+        });
+      if (response.status == 200) {
+        toast.success("Reply posted successfully!");
+        setText("");
+      }
+    } else {
+      toast.error("Textfield should not be empty!");
+    }
+  };
   useEffect(() => {
     handlegetTweet();
+    handlegetreplies();
   }, []);
   return (
     <>
@@ -94,13 +133,37 @@ export default function PostReplies() {
           likes={tweet.hearts.length}
         />
         <Reply>
-          <img className="DP" src="/src/Components/Icons/UserDP.svg" alt="" />
-          <textarea placeholder="Post your reply" name="" id=""></textarea>
+          <img className="DP" src={myDP} alt="" />
+          <textarea
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            placeholder="What's your POV?!"
+            name=""
+            id=""
+          ></textarea>
           <div className="btnContainer">
-            <Button $post1>Reply</Button>
+            <Button $post1 onClick={handlepostreply}>
+              Reply
+            </Button>
           </div>
         </Reply>
         {/* Replies Here */}
+        {tweetReplies.map((element, index) => {
+          return (
+            <PostCard
+              key={index}
+              userID={element.userID}
+              id={element._id}
+              text={element.text}
+              date={element.time}
+              replies={element.replies.length}
+              retweets={element.retweets.length}
+              likes={element.hearts.length}
+            />
+          );
+        })}
       </Container>
     </>
   );
@@ -160,6 +223,7 @@ const Reply = styled.div`
     width: 45px;
     height: 45px;
     margin: -10px 0px 0px 10px;
+    border-radius: 100px;
   }
   textarea {
     display: flex;
