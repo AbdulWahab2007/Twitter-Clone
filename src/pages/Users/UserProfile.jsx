@@ -14,7 +14,6 @@ export default function UserProfile() {
   const goBack = () => {
     history(-1);
   };
-  const { loginusername, setName, setloginUsername } = useContext(Context);
   const name = localStorage.getItem("name");
   const [isActive, SetisActive] = useState(0);
   const [myData, setMyData] = useState({});

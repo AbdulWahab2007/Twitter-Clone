@@ -99,7 +99,7 @@ export default function SignUpButton() {
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
-                    type="text"
+                    type="password"
                     placeholder=""
                   />
                   <p className="placeholder">Password (8 to 16 characters)</p>
@@ -110,7 +110,7 @@ export default function SignUpButton() {
                     onChange={(e) => {
                       setConfirmation(e.target.value);
                     }}
-                    type="text"
+                    type="password"
                     placeholder=""
                   />
                   <p className="placeholder">Confirm Password</p>
