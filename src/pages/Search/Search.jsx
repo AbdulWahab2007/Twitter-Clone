@@ -22,7 +22,7 @@ export default function Search() {
           $search
           onChange={handlesearch}
           type="text"
-          placeholder="Search users by their name..."
+          placeholder="Search users by their username..."
         />
         <FollowSuggestions $search>
           {searchItems.map((element, index) => {
@@ -31,8 +31,8 @@ export default function Search() {
                 <Link className="link" to={"/main/user/" + element.username}>
                   <ProfileSuggestion
                     dp={element.additionalData.profilePic}
-                    name={element.username}
-                    handle={element.additionalData.additionalData.name}
+                    name={element.additionalData.additionalData.name}
+                    username={element.username}
                   />
                 </Link>
               </div>

@@ -19,8 +19,8 @@ export default function SignInButton() {
     handleUnavailable,
     loginusername,
     setloginUsername,
-    name,
-    setName,
+    username,
+    setUsername,
   } = useContext(Context);
   const { token, setToken } = useContext(Context);
   const [password, setPassword] = useState("");
@@ -36,16 +36,17 @@ export default function SignInButton() {
         .get("http://localhost:5000/api/user/?username=" + loginusername)
         .then(function (myresponse) {
           localStorage.setItem("myID", myresponse.data._id);
+          localStorage.setItem("username", myresponse.data.username);
           localStorage.setItem(
-            "handle",
+            "name",
             myresponse.data.additionalData.additionalData.name
           );
         });
       setIsLoggedin(true);
       setToken(response.data.token);
       toast.success("Successfully logged in");
-      if (name.length == 0) {
-        setName(loginusername);
+      if (username.length == 0) {
+        setUsername(loginusername);
       }
     }
   };

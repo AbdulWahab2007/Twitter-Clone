@@ -11,25 +11,27 @@ export default function EditProfile() {
   const [dp, setDp] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [bio, setBio] = useState("");
-  const [handle, setHandle] = useState("");
+  const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [weblink, setWebLink] = useState("");
   const [dob, setDob] = useState("");
   const localtoken = localStorage.getItem("token");
   const navigate = useNavigate();
-  if (handle.length > 0) {
-    localStorage.setItem("handle", handle);
+  if (name.length > 0) {
+    localStorage.setItem("name", name);
   }
   const handleSave = async () => {
     if (
       bio.length > 1 &&
-      handle.length <= 14 &&
+      name.length <= 14 &&
       location.length >= 4 &&
-      dob.length >= 8
+      dob.length >= 8 &&
+      dp &&
+      coverPhoto
     ) {
       const data = {
         additionalData: {
-          name: handle,
+          name: name,
           bio: bio,
           location: location,
           website: weblink,
@@ -48,41 +50,41 @@ export default function EditProfile() {
       );
       if (response.status == 200) {
         toast.success("Info updated successfully");
-        navigate("/main/profile");
       }
     } else {
       toast.error(
         "Some of your data is missing OR Invalid, Please check again"
       );
     }
-
-    let formData = new FormData();
-    formData.append("image", dp);
-    formData.append("type", "Profile");
-    const response = await axios.post(
-      "http://localhost:5000/api/user/upload",
-      formData,
-      {
-        headers: {
-          Authorization: "Bearer " + localtoken,
-        },
+    if (dp && coverPhoto) {
+      let formData = new FormData();
+      formData.append("image", dp);
+      formData.append("type", "Profile");
+      const response = await axios.post(
+        "http://localhost:5000/api/user/upload",
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer " + localtoken,
+          },
+        }
+      );
+      let formData2 = new FormData();
+      formData2.append("image", coverPhoto);
+      formData2.append("type", "Cover");
+      const response2 = await axios.post(
+        "http://localhost:5000/api/user/upload",
+        formData2,
+        {
+          headers: {
+            Authorization: "Bearer " + localtoken,
+          },
+        }
+      );
+      if (response.status == 200 || response2.status == 200) {
+        toast.success("Image changed");
+        navigate("/main/profile");
       }
-    );
-    let formData2 = new FormData();
-    formData2.append("image", coverPhoto);
-    formData2.append("type", "Cover");
-    const response2 = await axios.post(
-      "http://localhost:5000/api/user/upload",
-      formData2,
-      {
-        headers: {
-          Authorization: "Bearer " + localtoken,
-        },
-      }
-    );
-    if (response.status == 200 || response2.status == 200) {
-      toast.success("Image changed");
-      navigate("/main/profile");
     }
   };
 
@@ -132,13 +134,13 @@ export default function EditProfile() {
               type="text"
             />
           </div>
-          <h1>Write your Handle/username</h1>
+          <h1>Write your full name</h1>
           <p>&#40; maximum 14 characters &#41;</p>
           <div className="inputContainer">
             <styles.Input
-              value={handle}
+              value={name}
               onChange={(e) => {
-                setHandle(e.target.value);
+                setName(e.target.value);
               }}
               type="text"
             />
@@ -155,14 +157,14 @@ export default function EditProfile() {
             />
           </div>
           <h1>Your Date Of Birth</h1>
-          <p>&#40; DayOfWeek MM DD YYYY &#41;</p>
+          <p>&#40; DD MM YYYY &#41;</p>
           <div className="inputContainer">
             <styles.Input
               value={dob}
               onChange={(e) => {
                 setDob(e.target.value);
               }}
-              type="text"
+              type="date"
             />
           </div>
           <h1>Any personal web link</h1>

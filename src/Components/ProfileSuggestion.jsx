@@ -14,7 +14,7 @@ export default function ProfileSuggestion(props) {
           <img className="DP" src={props.dp} alt="" />
           <div className="Names">
             <h3>{props.name}</h3>
-            <p>{"@" + props.handle}</p>
+            <p>{"@" + props.username}</p>
           </div>
         </div>
         <div className="right">

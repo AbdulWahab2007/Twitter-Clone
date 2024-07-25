@@ -5,21 +5,21 @@ import { toast } from "sonner";
 export const Context = createContext();
 export default function Provider(props) {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
   const [loginusername, setloginUsername] = useState("");
   const [myDP, setMyDp] = useState("/src/Components/Icons/UserDP.svg");
   if (token.length != 0) {
     localStorage.setItem("token", token);
   }
-  if (name.length != 0) {
-    localStorage.setItem("name", name);
+  if (username.length != 0) {
+    localStorage.setItem("username", username);
   }
   const handleMyData = async () => {
     const myresponse = axios
       .get(
         "http://localhost:5000/api/user/?username=" +
-          localStorage.getItem("name")
+          localStorage.getItem("username")
       )
       .then(function (myresponse) {
         setMyDp(myresponse.data.additionalData.profilePic);
@@ -48,8 +48,8 @@ export default function Provider(props) {
         handleUnavailable,
         loginusername,
         setloginUsername,
-        name,
-        setName,
+        username,
+        setUsername,
       }}
     >
       {props.children}

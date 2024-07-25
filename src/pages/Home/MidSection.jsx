@@ -13,9 +13,9 @@ export default function MidSection() {
   const { token, setToken } = useContext(Context);
   const localtoken = localStorage.getItem("token");
   const handleuserdata = async () => {
-    const localname = localStorage.getItem("name");
+    const localusername = localStorage.getItem("username");
     const myresponse = axios
-      .get("http://localhost:5000/api/user/?username=" + localname)
+      .get("http://localhost:5000/api/user/?username=" + localusername)
       .then(function (myresponse) {
         setDp(myresponse.data.additionalData.profilePic);
       });

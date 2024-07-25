@@ -43,8 +43,8 @@ export default function RightBar() {
               <div key={index}>
                 <Link className="link" to={"/main/user/" + element.username}>
                   <ProfileSuggestion
-                    name={element.username}
-                    handle={element.additionalData.additionalData.name}
+                    name={element.additionalData.additionalData.name}
+                    username={element.username}
                     dp={element.additionalData.profilePic}
                   />
                 </Link>

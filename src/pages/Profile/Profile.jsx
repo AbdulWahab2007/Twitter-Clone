@@ -36,17 +36,17 @@ export default function Profile() {
     },
   });
   const [tweets, setTweets] = useState([]);
-  const localname = localStorage.getItem("name");
+  const localusername = localStorage.getItem("username");
   const handleuserdata = async () => {
     const myresponse = axios
-      .get("http://localhost:5000/api/user/?username=" + localname)
+      .get("http://localhost:5000/api/user/?username=" + localusername)
       .then(function (myresponse) {
         setMyData(myresponse.data);
       });
   };
   const handleloadtweets = async () => {
     const response = axios
-      .get("http://localhost:5000/api/tweet?username=" + localname)
+      .get("http://localhost:5000/api/tweet?username=" + localusername)
       .then(function (response) {
         setTweets(response.data);
       });
@@ -68,7 +68,9 @@ export default function Profile() {
               </span>
             </span>
           </Link>
-          <h3 className="heading">{myData.username}</h3>
+          <h3 className="heading">
+            {myData.additionalData.additionalData.name}
+          </h3>
         </Top>
         <Info>
           {myData.additionalData ? (
@@ -105,12 +107,10 @@ export default function Profile() {
             </div>
           </div>
           <div className="bio">
-            <h3>{myData.username}</h3>
+            <h3>{myData.additionalData.additionalData.name}</h3>
             {myData.additionalData ? (
               <>
-                <p className="userhandle">
-                  @{myData.additionalData.additionalData.name}
-                </p>
+                <p className="userhandle">@{myData.username}</p>
                 <p>{myData.additionalData.additionalData.bio}</p>
                 <div className="personalInfo">
                   <p className="row">
@@ -119,10 +119,15 @@ export default function Profile() {
                     </span>
                     {myData.additionalData.additionalData.location}
                   </p>
-                  <p className="row">
-                    <span className="material-symbols-outlined">link</span>
-                    {myData.additionalData.additionalData.website}
-                  </p>
+                  {myData.additionalData.additionalData.website != null ||
+                  myData.additionalData.additionalData.website != "" ? (
+                    <p className="row">
+                      <span className="material-symbols-outlined">link</span>
+                      {myData.additionalData.additionalData.website}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
                   <p className="row">
                     <span className="material-symbols-outlined">
                       celebration
@@ -171,8 +176,8 @@ export default function Profile() {
               <div key={index}>
                 <PostCard
                   dp={myData.additionalData.profilePic}
-                  name={myData.username}
-                  handle={myData.additionalData.additionalData.name}
+                  name={myData.additionalData.additionalData.name}
+                  username={"@" + myData.username}
                   id={element._id}
                   text={element.text}
                   date={element.time}

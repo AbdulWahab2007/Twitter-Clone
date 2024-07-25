@@ -23,7 +23,7 @@ export default function PopoverTag(props) {
                 {props.name}
                 <img className="lock" src="/src/Components/Icons/Lock.svg" />
               </h3>
-              <p>{props.handle}</p>
+              <p>{props.username}</p>
             </div>
           </div>
           <div className="right">
@@ -38,7 +38,7 @@ export default function PopoverTag(props) {
               <p>Add an existing account</p>
             </div>
             <div className="opt" onClick={handlelogout}>
-              <p>Log out {props.handle}</p>
+              <p>Log out {props.username}</p>
             </div>
           </div>
         </Popover.Content>
@@ -98,7 +98,8 @@ export const IconButton = styled.button`
       text-decoration: ${(props) => (props.$suggestion ? "underline" : "none")};
     }
     p {
-      margin: 0px;
+      margin: ${(props) =>
+        props.$suggestion ? "0px 0px 0px -25px" : "0px 0px 0px 0px"};
       font-size: 14px;
       font-family: "Montserrat", sans-serif;
       font-optical-sizing: auto;

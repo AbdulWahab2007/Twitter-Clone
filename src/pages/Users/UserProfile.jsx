@@ -52,7 +52,7 @@ export default function UserProfile() {
         const changedID = response.data._id;
         setUserID(changedID);
         const myresponse = axios
-          .get("http://localhost:5000/api/user/?username=" + name)
+          .get("http://localhost:5000/api/user/?username=" + username)
           .then(function (myresponse) {
             setMyData(myresponse.data);
             const match = myresponse.data.following.includes(changedID);
@@ -117,7 +117,9 @@ export default function UserProfile() {
               </span>
             </span>
           </Link>
-          <h3 className="heading">{userData.username}</h3>
+          <h3 className="heading">
+            {userData.additionalData.additionalData.name}
+          </h3>
         </Top>
         <Info>
           {userData.additionalData ? (
@@ -157,12 +159,10 @@ export default function UserProfile() {
             </div>
           </div>
           <div className="bio">
-            <h3>{userData.username}</h3>
+            <h3>{userData.additionalData.additionalData.name}</h3>
             {userData.additionalData ? (
               <>
-                <p className="userhandle">
-                  @{userData.additionalData.additionalData.name}
-                </p>
+                <p className="userhandle">@{userData.username}</p>
                 <p>{userData.additionalData.additionalData.bio}</p>
                 <div className="personalInfo">
                   <p className="row">
@@ -171,10 +171,15 @@ export default function UserProfile() {
                     </span>
                     {userData.additionalData.additionalData.location}
                   </p>
-                  <p className="row">
-                    <span className="material-symbols-outlined">link</span>
-                    {userData.additionalData.additionalData.website}
-                  </p>
+                  {userData.additionalData.additionalData.website != null ||
+                  userData.additionalData.additionalData.website != "" ? (
+                    <p className="row">
+                      <span className="material-symbols-outlined">link</span>
+                      {userData.additionalData.additionalData.website}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
                   <p className="row">
                     <span className="material-symbols-outlined">
                       celebration
@@ -226,8 +231,8 @@ export default function UserProfile() {
               <div key={index}>
                 <PostCard
                   dp={userData.additionalData.profilePic}
-                  name={userData.username}
-                  handle={userData.additionalData.additionalData.name}
+                  name={userData.additionalData.additionalData.name}
+                  username={"@" + userData.username}
                   id={element._id}
                   text={element.text}
                   date={element.time}

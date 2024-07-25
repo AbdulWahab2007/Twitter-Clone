@@ -120,11 +120,13 @@ export default function PostCard(props) {
         </ProfileContainer>
         <Content>
           <Info>
-            <h3>{props.name != null ? props.name : replyPoster.username}</h3>
-            <p className="InfoP">
-              {props.handle != null
-                ? props.handle
+            <h3>
+              {props.name != null
+                ? props.name
                 : replyPoster.additionalData.additionalData.name}
+            </h3>
+            <p className="InfoP">
+              {props.username != null ? props.username : replyPoster.username}
             </p>
             <p className="dot">·</p>
             <p className="InfoP">{time}</p>

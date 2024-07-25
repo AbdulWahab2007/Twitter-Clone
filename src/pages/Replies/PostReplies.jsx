@@ -124,8 +124,8 @@ export default function PostReplies() {
           liked={liked}
           id={tweet._id}
           dp={userData.additionalData.profilePic}
-          name={userData.username}
-          handle={userData.additionalData.additionalData.name}
+          name={userData.additionalData.additionalData.name}
+          username={userData.username}
           text={tweet.text}
           date={tweet.time}
           replies={tweet.replies.length}

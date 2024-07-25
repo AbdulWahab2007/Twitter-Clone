@@ -8,12 +8,12 @@ import axios from "axios";
 
 export default function SideBar() {
   const name = localStorage.getItem("name");
-  const handle = localStorage.getItem("handle");
+  const username = localStorage.getItem("username");
   const { handleUnavailable } = useContext(Context);
   const [dp, setDp] = useState("/src/components/Icons/UserDP.svg");
   const handleuserdata = async () => {
     const myresponse = axios
-      .get("http://localhost:5000/api/user/?username=" + name)
+      .get("http://localhost:5000/api/user/?username=" + username)
       .then(function (myresponse) {
         setDp(myresponse.data.additionalData.profilePic);
       });
@@ -92,7 +92,7 @@ export default function SideBar() {
           </Link>
         </Anchor>
         <Button $post>Post</Button>
-        <Popover dp={dp} name={name} handle={"@" + handle} />
+        <Popover dp={dp} name={name} username={"@" + username} />
       </SideBarContainer>
     </>
   );

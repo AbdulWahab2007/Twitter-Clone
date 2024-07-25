@@ -12,7 +12,8 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpButton() {
-  const { isLoggedin, setIsLoggedin, name, setName } = useContext(Context);
+  const { isLoggedin, setIsLoggedin, username, setUsername } =
+    useContext(Context);
   const { token, setToken } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,12 +25,12 @@ export default function SignUpButton() {
     const isValid = regex.test(email);
     if (password === confirmation) {
       if (
-        name.length >= 3 &&
+        username.length >= 3 &&
         isValid &&
         password.length >= 8 &&
         password.length < 16
       ) {
-        const data = { username: name, email, password };
+        const data = { username, email, password };
         const response = await axios
           .post("http://localhost:5000/api/user/signup", data)
           .catch(function (error) {
@@ -37,7 +38,7 @@ export default function SignUpButton() {
           });
         if (response.status == 200) {
           const myresponse = axios
-            .get("http://localhost:5000/api/user/?username=" + name)
+            .get("http://localhost:5000/api/user/?username=" + username)
             .then(function (myresponse) {
               localStorage.setItem("myID", myresponse.data._id);
             });
@@ -73,9 +74,9 @@ export default function SignUpButton() {
                 <h1>Create your account</h1>
                 <div className="InputHolder">
                   <styles.Input
-                    value={name}
+                    value={username}
                     onChange={(e) => {
-                      setName(e.target.value);
+                      setUsername(e.target.value);
                     }}
                     type="text"
                     placeholder=""
