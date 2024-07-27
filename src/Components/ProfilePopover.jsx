@@ -99,7 +99,7 @@ export const IconButton = styled.button`
     }
     p {
       margin: ${(props) =>
-        props.$suggestion ? "0px 0px 0px -25px" : "0px 0px 0px 0px"};
+        props.$suggestion ? "0px 0px 0px -25px" : "0px 0px 0px -55px"};
       font-size: 14px;
       font-family: "Montserrat", sans-serif;
       font-optical-sizing: auto;

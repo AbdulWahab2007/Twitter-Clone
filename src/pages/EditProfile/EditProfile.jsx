@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
+  const [isloading, setIsloading] = useState("none");
   const [dp, setDp] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [bio, setBio] = useState("");
@@ -21,42 +22,53 @@ export default function EditProfile() {
     localStorage.setItem("name", name);
   }
   const handleSave = async () => {
+    setIsloading("block");
     if (
       bio.length > 1 &&
       name.length <= 14 &&
       location.length >= 4 &&
-      dob.length >= 8 &&
-      dp &&
-      coverPhoto
+      dob.length >= 8
     ) {
-      const data = {
-        additionalData: {
-          name: name,
-          bio: bio,
-          location: location,
-          website: weblink,
-          dob: dob,
-        },
-      };
-      const response = await axios.post(
-        "http://localhost:5000/api/user/editprofile",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localtoken,
+      if (dp && coverPhoto) {
+        const data = {
+          additionalData: {
+            name: name,
+            bio: bio,
+            location: location,
+            website: weblink,
+            dob: dob,
           },
+        };
+        const response = await axios.post(
+          "http://localhost:5000/api/user/editprofile",
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localtoken,
+            },
+          }
+        );
+        if (response.status == 200) {
+          toast.success("Info updated successfully");
+          if (!dp && !coverPhoto) {
+            navigate("/main/profile");
+          }
         }
-      );
-      if (response.status == 200) {
-        toast.success("Info updated successfully");
+      } else {
+        toast.error("Please select images!");
+        setIsloading("none");
       }
     } else {
-      toast.error(
-        "Some of your data is missing OR Invalid, Please check again"
-      );
+      setIsloading("none");
+      if (!dp && !coverPhoto) {
+        toast.error(
+          "Some of your data is missing OR Invalid, Please check again"
+        );
+      }
     }
     if (dp && coverPhoto) {
+      setIsloading("block");
       let formData = new FormData();
       formData.append("image", dp);
       formData.append("type", "Profile");
@@ -85,6 +97,8 @@ export default function EditProfile() {
         toast.success("Image changed");
         navigate("/main/profile");
       }
+    } else {
+      toast.error("Please select both images");
     }
   };
 
@@ -183,6 +197,7 @@ export default function EditProfile() {
               Save Changes
             </styles.Button>
           </div>
+          <div style={{ display: isloading }} className="loader"></div>
         </Bottom>
       </Container>
     </>
@@ -249,7 +264,29 @@ const Bottom = styled.div`
     width: 40%;
   }
   .btnContainer {
+    display: flex;
     width: 14%;
     margin: 0px 0px 6px 22px;
+  }
+  .loader {
+    position: absolute;
+    bottom: -337px;
+    left: 237px;
+    width: 30px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #1d9bf0;
+    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+    to {
+      transform: rotate(1turn);
+    }
   }
 `;

@@ -225,7 +225,7 @@ export const Info = styled.div`
     .DP {
       width: 180px;
       height: 180px;
-      margin: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 10px;
       border-radius: 100px;
     }
   }
