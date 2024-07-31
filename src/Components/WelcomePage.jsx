@@ -17,7 +17,7 @@ export default function WelcomePage() {
       <Main>
         <WCContainer>
           <LeftContainer>
-            <img src="/src/Components/Icons/XLogo.png" />
+            <img className="XLogo" src="/src/Components/Icons/XLogo.png" />
           </LeftContainer>
           <RightContainer>
             <h1>Happening now</h1>
@@ -45,15 +45,15 @@ export default function WelcomePage() {
               </HRcontainer>
               <SignUpButton />
               <p>
-                By signing up, you agree to the{" "}
+                By signing up, you agree to the&nbsp;
                 <a href="https://twitter.com/en/tos" target="_blank">
                   Terms of Service
-                </a>{" "}
-                and{" "}
+                </a>
+                &nbsp; and&nbsp;
                 <a href="https://twitter.com/en/privacy" target="_blank">
                   Privacy Policy
                 </a>
-                , including{" "}
+                , including&nbsp;
                 <a
                   href="https://help.twitter.com/en/rules-and-policies/x-cookies"
                   target="_blank"
@@ -159,6 +159,9 @@ const Main = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  @media (max-width: 430px) {
+    align-items: flex-start;
+  }
 `;
 
 const WCContainer = styled.div`
@@ -167,10 +170,20 @@ const WCContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 92vh;
-  img {
+  .XLogo {
     width: 300px;
     height: 300px;
     user-select: none;
+  }
+  @media (max-width: 430px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .XLogo {
+      width: 12vw;
+      height: 12vw;
+      margin: 13vw 0vw 0vw 8.4vw;
+    }
   }
 `;
 
@@ -179,6 +192,10 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 40%;
+  @media (max-width: 430px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 `;
 
 const RightContainer = styled.div`
@@ -194,6 +211,17 @@ const RightContainer = styled.div`
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+  }
+  @media (max-width: 430px) {
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    h1 {
+      margin: 9vw 0vw 0vw -15vw;
+      width: 70%;
+      font-size: 12vw;
+    }
   }
 `;
 const ButtonsContainer = styled.div`
@@ -232,6 +260,25 @@ const ButtonsContainer = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+  @media (max-width: 430px) {
+    margin: 30px 0px 0px 0px;
+    width: 85%;
+    height: auto;
+    h2 {
+      font-size: 7vw;
+      margin-bottom: 10px;
+      font-weight: bolder;
+      margin-left: 0px;
+    }
+    p {
+      font-size: 2.5vw;
+      margin-left: 0px;
+    }
+    h3 {
+      font-size: 4.3vw;
+      font-weight: bolder;
+    }
+  }
 `;
 
 export const HRcontainer = styled.div`
@@ -252,6 +299,12 @@ export const HRcontainer = styled.div`
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+  }
+  @media (max-width: 430px) {
+    height: 30px;
+    p {
+      font-size: 4vw;
+    }
   }
 `;
 
@@ -275,6 +328,14 @@ const WCFooter = styled.div`
   a:hover {
     text-decoration: underline;
   }
+  @media (max-width: 430px) {
+    margin-bottom: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    a {
+      font-size: 3vw;
+    }
+  }
 `;
 
 const Anchors = styled.div`
@@ -282,4 +343,7 @@ const Anchors = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 10px;
+  @media (max-width: 430px) {
+    display: none;
+  }
 `;

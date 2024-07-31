@@ -15,6 +15,10 @@ export const DialogOverlay = styled.div`
       opacity: 1;
     }
   }
+  @media (max-width: 430px) {
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export const DialogContent = styled.div`
@@ -27,7 +31,7 @@ export const DialogContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  max-width: 450px;
+  max-width: 430px;
   max-height: 85vh;
   padding: 25px;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,6 +69,13 @@ export const DialogContent = styled.div`
       transform: translate(-50%, -50%) scale(1);
     }
   }
+  @media (max-width: 430px) {
+    max-width: 100%;
+    max-height: 100vh;
+    width: 100%;
+    height: 100vh;
+    padding: 0px;
+  }
 `;
 
 export const Sign = styled.div`
@@ -83,6 +94,15 @@ export const Sign = styled.div`
     margin-top: 15px;
     width: 35px;
     height: 35px;
+  }
+  @media (max-width: 430px) {
+    .TopBar {
+      margin-top: 0px;
+    }
+    img {
+      width: 8vw;
+      height: 8vw;
+    }
   }
 `;
 
@@ -134,6 +154,17 @@ export const SignUpContainer = styled.div`
     background-color: white;
     transition: all 0.1s;
   }
+  @media (max-width: 430px) {
+    width: 80%;
+    h1 {
+      font-size: 7vw;
+    }
+    .placeholder {
+      padding: 1vw;
+      font-size: 3.3vw;
+      margin-top: 1.6vw;
+    }
+  }
 `;
 
 export const SignInContainer = styled.div`
@@ -170,6 +201,18 @@ export const SignInContainer = styled.div`
     background-color: white;
     transition: all 0.1s;
   }
+  @media (max-width: 430px) {
+    width: 80%;
+    h1 {
+      font-size: 7vw;
+      margin-top: -25vw;
+    }
+    .placeholder {
+      padding: 1vw;
+      font-size: 3.3vw;
+      margin-top: 1.6vw;
+    }
+  }
 `;
 
 export const Input = styled.input`
@@ -197,6 +240,13 @@ export const Input = styled.input`
     font-size: 15px;
     margin-top: 6px;
     padding: 3px;
+  }
+  @media (max-width: 430px) {
+    height: 12vw;
+    &:focus + .placeholder {
+      font-size: 3.7vw;
+      margin-top: 1.4vw;
+    }
   }
 `;
 
@@ -312,5 +362,23 @@ export const Button = styled.div`
     text-decoration: none;
     color: white;
     width: 100%;
+  }
+  @media (max-width: 430px) {
+    font-size: ${(props) => (props.$follow ? "15px" : "4vw")};
+    height: ${(props) =>
+      props.$next
+        ? "13vw"
+        : props.$follow
+        ? "40px"
+        : props.$post
+        ? "55px"
+        : props.$post1
+        ? "35px"
+        : "35px"};
+    .Logo {
+      width: 4.7vw;
+      height: 5.4vw;
+      margin-right: 2vw;
+    }
   }
 `;
