@@ -34,64 +34,67 @@ export default function SideBar() {
         <Anchor>
           <Link to="/main/home">
             <img src="/src/Components/Icons/Home.svg" alt="" />
-            Home
+            <p>Home</p>
           </Link>
         </Anchor>
         <Anchor>
           <Link to="/main/explore">
             <img src="/src/Components/Icons/Explore.svg" alt="" />
-            Explore
+            <p>Explore</p>
           </Link>
         </Anchor>
         <Anchor>
           <Link to="/notifications">
             <img src="/src/Components/Icons/Notifications.svg" alt="" />
-            Notifications
+            <p>Notifications</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/Messages.svg" alt="" />
-            Messages
+            <p>Messages</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/Grok.svg" alt="" />
-            Grok
+            <p>Grok</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/Lists.svg" alt="" />
-            Lists
+            <p>Lists</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/Communities.svg" alt="" />
-            Communities
+            <p>Communities</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/Premium.svg" alt="" />
-            Premium
+            <p>Premium</p>
           </Link>
         </Anchor>
         <Anchor>
           <Link to="/main/profile">
             <img src="/src/Components/Icons/Profile.svg" alt="" />
-            Profile
+            <p>Profile</p>
           </Link>
         </Anchor>
         <Anchor onClick={handleUnavailable}>
           <Link>
             <img src="/src/Components/Icons/More.svg" alt="" />
-            More
+            <p>More</p>
           </Link>
         </Anchor>
-        <Button $post>Post</Button>
+        <Button $post>
+          <p>Post</p>
+          <span class="material-symbols-outlined">Draw</span>
+        </Button>
         <Popover dp={dp} name={name} username={"@" + username} />
       </SideBarContainer>
     </>
@@ -106,6 +109,12 @@ const SideBarContainer = styled.div`
   height: 100vh;
   margin-left: 100px;
   border-right: 1px solid #e7e7e7;
+  @media (max-width: 430px) {
+    position: static;
+    width: 15%;
+    align-items: center;
+    margin: 0px;
+  }
 `;
 
 const Anchor = styled.div`
@@ -147,5 +156,33 @@ const Anchor = styled.div`
   .XLogo:hover {
     background-color: #f1f1f1;
     border-radius: 100%;
+  }
+  p {
+    all: unset;
+  }
+  @media (max-width: 430px) {
+    width: 6.2vw;
+    height: 6.2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      display: none;
+    }
+    .XLogo {
+      margin: 0px;
+    }
+    .XLogo:hover {
+      background: transparent;
+    }
+    img {
+      width: 6.2vw;
+      height: 6.2vw;
+      margin: 0px 0px -4px 0px;
+    }
+    a:hover {
+      background: transparent;
+      cursor: default;
+    }
   }
 `;

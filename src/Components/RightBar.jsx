@@ -68,6 +68,9 @@ const Container = styled.div`
   right: 20px;
   width: 30%;
   height: 100vh;
+  @media (max-width: 430px) {
+    display: none;
+  }
 `;
 
 const Premium = styled.div`

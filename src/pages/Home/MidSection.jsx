@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export default function MidSection() {
   const [isActive, SetisActive] = useState(0);
   const [text, setText] = useState("");
-  const [dp, setDp] = useState("");
+  const [dp, setDp] = useState("/src/components/Icons/UserDP.svg");
   const { token, setToken } = useContext(Context);
   const localtoken = localStorage.getItem("token");
   const handleuserdata = async () => {
@@ -131,7 +131,8 @@ export default function MidSection() {
             </div>
             <div className="btncontainer">
               <Button $post1 onClick={handleposttweet}>
-                Post
+                <p>Post</p>
+                <span class="material-symbols-outlined">Draw</span>
               </Button>
             </div>
           </div>
@@ -155,6 +156,10 @@ const Container = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100vh;
+  }
+  @media (max-width: 430px) {
+    margin: 0px;
+    width: 85%;
   }
 `;
 
@@ -186,6 +191,11 @@ export const TopCategories = styled.div`
     color: black;
     font-weight: 700;
     border-bottom: 3px solid #1d9bf0;
+  }
+  @media (max-width: 430px) {
+    .Category {
+      font-size: 3.5vw;
+    }
   }
 `;
 
@@ -254,5 +264,29 @@ const PostSection = styled.div`
   }
   .btncontainer {
     width: 25%;
+  }
+  @media (max-width: 430px) {
+    .DP {
+      width: 12vw;
+      height: 12vw;
+      margin: 0px 0px 0px 2vw;
+    }
+    textarea {
+      margin: 4vw 2vw 0px 2vw;
+      font-size: 5vw;
+    }
+    .bottom {
+      height: 15vw;
+    }
+    .ImgContainer {
+      margin-left: 15vw;
+    }
+    span {
+      width: 8vw;
+      height: 8vw;
+    }
+    .TextOpt {
+      width: 5vw;
+    }
   }
 `;

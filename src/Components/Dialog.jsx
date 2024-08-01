@@ -363,7 +363,18 @@ export const Button = styled.div`
     color: white;
     width: 100%;
   }
+  p {
+    all: unset;
+  }
+  span {
+    display: none;
+  }
+  .material-symbols-outlined {
+    display: none;
+  }
   @media (max-width: 430px) {
+    margin-left: ${(props) => (props.$post ? "0px" : "0px")};
+    margin: ${(props) => (props.$post ? "0px" : "5px")};
     font-size: ${(props) => (props.$follow ? "15px" : "4vw")};
     height: ${(props) =>
       props.$next
@@ -371,14 +382,33 @@ export const Button = styled.div`
         : props.$follow
         ? "40px"
         : props.$post
-        ? "55px"
+        ? "12vw"
         : props.$post1
-        ? "35px"
+        ? "9vw"
         : "35px"};
+    width: ${(props) =>
+      props.$post
+        ? "12vw"
+        : props.$follow
+        ? "100%"
+        : props.$post1
+        ? "9vw"
+        : "100%"};
     .Logo {
       width: 4.7vw;
       height: 5.4vw;
       margin-right: 2vw;
+    }
+    p {
+      display: none;
+    }
+    span {
+      display: flex;
+      font-size: 7vw;
+    }
+    .material-symbols-outlined {
+      display: flex;
+      font-size: 7vw;
     }
   }
 `;

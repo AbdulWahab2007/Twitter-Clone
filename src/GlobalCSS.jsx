@@ -35,12 +35,9 @@ const GlobalStyle = createGlobalStyle`
   .PopoverContent[data-state='open'][data-side='left'] {
     animation-name: slideRightAndFade;
   }
-
-
   .optContainer {
     width: 100%;
   }
-
   .opt {
     height: 30px;
     font-size: 16px;
@@ -112,5 +109,15 @@ const GlobalStyle = createGlobalStyle`
       transform: translateX(0);
     }
   } 
+  @media (max-width: 430px) {
+    .PopoverContent {
+      width: 70vw;
+      height: 18vw;
+    }
+    .opt{
+      font-size: 4vw;
+      height: 10vw;
+    }
+  }
 `;
 export default GlobalStyle;

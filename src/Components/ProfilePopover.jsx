@@ -119,4 +119,22 @@ export const IconButton = styled.button`
     width: 22px;
     height: 22px;
   }
+  @media (max-width: 430px) {
+    margin: 5vw 2vw 0vw 2vw;
+    width: 12vw;
+    height: 12vw;
+    border-radius: 100px;
+    justify-content: center;
+    .Names {
+      display: none;
+    }
+    .DP {
+      margin: 0px;
+      width: 12vw;
+      height: 12vw;
+    }
+    .right {
+      display: none;
+    }
+  }
 `;

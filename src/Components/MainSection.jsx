@@ -37,4 +37,7 @@ const Main = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
+  @media (max-width: 430px) {
+    height: auto;
+  }
 `;
