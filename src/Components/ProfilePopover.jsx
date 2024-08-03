@@ -48,6 +48,7 @@ export default function PopoverTag(props) {
 }
 
 export const IconButton = styled.button`
+  border: 1px solid #e7e7e7;
   font-family: inherit;
   border-radius: ${(props) => (props.$suggestion ? "0px" : "80px")};
   height: 65px;
@@ -59,7 +60,6 @@ export const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 0px;
   background-color: white;
   &:focus {
     box-shadow: 0 0 0 2px rgb(138, 138, 138);
@@ -120,21 +120,31 @@ export const IconButton = styled.button`
     height: 22px;
   }
   @media (max-width: 430px) {
-    margin: 5vw 2vw 0vw 2vw;
-    width: 12vw;
-    height: 12vw;
-    border-radius: 100px;
-    justify-content: center;
+    margin: ${(props) =>
+      props.$suggestion ? "3vw 0px 0px 0px" : "5vw 2vw 0vw 2vw"};
+    width: ${(props) => (props.$suggestion ? "100%" : "12vw")};
+    height: ${(props) => (props.$suggestion ? "auto" : "12vw")};
+    border-radius: ${(props) => (props.$suggestion ? "50px" : "100px")};
+    justify-content: ${(props) =>
+      props.$suggestion ? "space-between" : "center"};
     .Names {
-      display: none;
+      display: ${(props) => (props.$suggestion ? "flex" : "none")};
+      h3 {
+        font-size: 4.3vw;
+      }
+      p {
+        font-size: 3.5vw;
+        margin-left: -6vw;
+      }
     }
     .DP {
-      margin: 0px;
-      width: 12vw;
-      height: 12vw;
+      margin: ${(props) => (props.$suggestion ? "0px 3vw 0px 0px" : "0px")};
+      width: 10vw;
+      height: 10vw;
     }
     .right {
-      display: none;
+      display: ${(props) => (props.$suggestion ? "flex" : "none")};
+      justify-content: flex-end;
     }
   }
 `;

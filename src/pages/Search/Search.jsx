@@ -52,4 +52,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 430px) {
+    width: 85%;
+    margin: 0px;
+  }
 `;

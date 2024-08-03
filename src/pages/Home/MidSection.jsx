@@ -193,7 +193,9 @@ export const TopCategories = styled.div`
     border-bottom: 3px solid #1d9bf0;
   }
   @media (max-width: 430px) {
+    height: 12vw;
     .Category {
+      height: 12vw;
       font-size: 3.5vw;
     }
   }
@@ -267,13 +269,14 @@ const PostSection = styled.div`
   }
   @media (max-width: 430px) {
     .DP {
-      width: 12vw;
-      height: 12vw;
+      width: 10vw;
+      height: 10vw;
       margin: 0px 0px 0px 2vw;
     }
     textarea {
       margin: 4vw 2vw 0px 2vw;
       font-size: 5vw;
+      height: 14vw;
     }
     .bottom {
       height: 15vw;

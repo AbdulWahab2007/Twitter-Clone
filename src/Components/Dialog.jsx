@@ -243,6 +243,7 @@ export const Input = styled.input`
   }
   @media (max-width: 430px) {
     height: 12vw;
+    font-size: 4.5vw;
     &:focus + .placeholder {
       font-size: 3.7vw;
       margin-top: 1.4vw;
@@ -375,22 +376,22 @@ export const Button = styled.div`
   @media (max-width: 430px) {
     margin-left: ${(props) => (props.$post ? "0px" : "0px")};
     margin: ${(props) => (props.$post ? "0px" : "5px")};
-    font-size: ${(props) => (props.$follow ? "15px" : "4vw")};
+    font-size: ${(props) => (props.$follow ? "15x" : "4vw")};
     height: ${(props) =>
       props.$next
         ? "13vw"
         : props.$follow
-        ? "40px"
+        ? "9vw"
         : props.$post
-        ? "12vw"
+        ? "9vw"
         : props.$post1
         ? "9vw"
         : "35px"};
     width: ${(props) =>
       props.$post
-        ? "12vw"
+        ? "9vw"
         : props.$follow
-        ? "100%"
+        ? "9vw"
         : props.$post1
         ? "9vw"
         : "100%"};
@@ -404,11 +405,11 @@ export const Button = styled.div`
     }
     span {
       display: flex;
-      font-size: 7vw;
+      font-size: 6vw;
     }
     .material-symbols-outlined {
       display: flex;
-      font-size: 7vw;
+      font-size: 6vw;
     }
   }
 `;

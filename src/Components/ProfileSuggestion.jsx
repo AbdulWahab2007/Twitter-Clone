@@ -18,7 +18,10 @@ export default function ProfileSuggestion(props) {
           </div>
         </div>
         <div className="right">
-          <Button $follow>Follow</Button>
+          <Button $follow>
+            <p>Follow</p>
+            <span class="material-symbols-outlined">person_add</span>
+          </Button>
         </div>
       </IconButton>
     </>

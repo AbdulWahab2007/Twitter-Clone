@@ -106,7 +106,7 @@ export const FollowSuggestions = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-  border: 1px solid #e7e7e7;
+  border: ${(props) => (props.$search ? "none" : "1px solid #e7e7e7")};
   margin: ${(props) =>
     props.$search ? "10px 0px 0px 0px" : "55px 0px 0px 0px"};
   border-radius: 20px;
@@ -141,5 +141,8 @@ export const FollowSuggestions = styled.div`
   }
   .link {
     margin: 0px;
+  }
+  @media (max-width: 430px) {
+    width: 90%;
   }
 `;
