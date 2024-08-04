@@ -158,7 +158,7 @@ const Container = styled.div`
     height: 100vh;
   }
   @media (max-width: 430px) {
-    margin: 0px;
+    margin: 0vw 0vw 0vw 15%;
     width: 85%;
   }
 `;

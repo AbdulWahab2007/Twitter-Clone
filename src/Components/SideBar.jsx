@@ -111,9 +111,9 @@ const SideBarContainer = styled.div`
   border-right: 1px solid #e7e7e7;
   @media (max-width: 430px) {
     position: fixed;
-    background-color: red;
     width: 15%;
     align-items: center;
+    height: auto;
     margin: 0px;
   }
 `;

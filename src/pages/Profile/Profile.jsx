@@ -122,8 +122,7 @@ export default function Profile() {
                     </span>
                     {myData.additionalData.additionalData.location}
                   </p>
-                  {myData.additionalData.additionalData.website != null ||
-                  myData.additionalData.additionalData.website != "" ? (
+                  {myData.additionalData.additionalData.website ? (
                     <p className="row">
                       <span className="material-symbols-outlined">link</span>
                       {myData.additionalData.additionalData.website}
@@ -211,7 +210,7 @@ export const Container = styled.div`
     height: 100vh;
   }
   @media (max-width: 430px) {
-    margin: 0px 0px 0px 16%;
+    margin: 0vw 0vw 0vw 15%;
     width: 85%;
   }
 `;
@@ -300,6 +299,7 @@ export const Info = styled.div`
       }
     }
     .bio {
+      margin: 25vw 0vw 0vw 5vw;
       h3 {
         font-size: 5.2vw;
       }
@@ -312,6 +312,9 @@ export const Info = styled.div`
       span {
         font-size: 3.8vw;
         margin-left: 0px;
+      }
+      .personalInfo {
+        flex-wrap: wrap;
       }
     }
   }

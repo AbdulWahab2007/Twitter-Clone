@@ -144,8 +144,7 @@ export default function PostCard(props) {
                   <p>{props.replies >= 0 ? props.replies : "#"}</p>
                 </Link>
               </span>
-
-              <span className="RepostIconContainer">
+              <span className="IconContainer RepostIconContainer">
                 <span className="material-symbols-outlined repost">
                   autorenew
                 </span>
@@ -233,6 +232,9 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+  @media (max-width: 430px) {
+    width: 84%;
+  }
 `;
 
 const Info = styled.div`
@@ -316,7 +318,6 @@ const PostOpts = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85px;
     border-radius: 15px;
     height: 35px;
     color: #565656;
@@ -325,15 +326,6 @@ const PostOpts = styled.div`
     cursor: pointer;
     color: #1d9bf0;
     background-color: #e7fdfd;
-  }
-  .RepostIconContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 85px;
-    border-radius: 15px;
-    height: 35px;
-    color: #565656;
   }
   .RepostIconContainer:hover {
     cursor: pointer;
@@ -345,7 +337,6 @@ const PostOpts = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 5px;
-    width: 30px;
     border-radius: 15px;
     height: 35px;
     color: #565656;
@@ -359,14 +350,14 @@ const PostOpts = styled.div`
     margin: 0px;
   }
   @media (max-width: 430px) {
-      margin: 0px 0px 4vw 0px;
-      .left{
-        width: 60%;
-      }
-    .material-symbols-outlined{
+    margin: 0px 0px 4vw 0px;
+    .left {
+      width: 60%;
+    }
+    .material-symbols-outlined {
       font-size: 4vw;
     }
-    p{
+    p {
       font-size: 3.8vw;
       margin-left: 1vw;
     }
@@ -377,7 +368,6 @@ const LikeIconContainer = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 85px;
   border-radius: 15px;
   height: 35px;
   color: ${(props) => (props.$liked ? "red" : "#565656")};
