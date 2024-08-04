@@ -220,6 +220,13 @@ const ProfileContainer = styled.div`
   .DP:hover {
     cursor: pointer;
   }
+  @media (max-width: 430px) {
+    margin: 2vw 2vw 2vw 2vw;
+    .DP {
+      width: 9vw;
+      height: 9vw;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -259,6 +266,15 @@ const Info = styled.div`
   .dot {
     margin: 0px -5px 0px 5px;
   }
+  @media (max-width: 430px) {
+    margin: 2vw 2vw 0vw 0vw;
+    h3 {
+      font-size: 3.8vw;
+    }
+    .InfoP {
+      font-size: 2.9vw;
+    }
+  }
 `;
 
 const PostText = styled.div`
@@ -273,6 +289,12 @@ const PostText = styled.div`
   }
   .text:hover {
     cursor: pointer;
+  }
+  @media (max-width: 430px) {
+    .text {
+      margin: 1vw 4vw 1vw 0px;
+      font-size: 3.5vw;
+    }
   }
 `;
 
@@ -335,6 +357,19 @@ const PostOpts = styled.div`
   }
   p {
     margin: 0px;
+  }
+  @media (max-width: 430px) {
+      margin: 0px 0px 4vw 0px;
+      .left{
+        width: 60%;
+      }
+    .material-symbols-outlined{
+      font-size: 4vw;
+    }
+    p{
+      font-size: 3.8vw;
+      margin-left: 1vw;
+    }
   }
 `;
 

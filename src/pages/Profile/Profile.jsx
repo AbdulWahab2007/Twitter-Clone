@@ -102,7 +102,10 @@ export default function Profile() {
             )}
             <div className="BtnContainer">
               <Link className="edit" to="/editprofile">
-                <Button $follow>Setup Profile</Button>
+                <Button $follow>
+                  <p>Setup Profile</p>
+                  <span class="material-symbols-outlined">manage_accounts</span>
+                </Button>
               </Link>
             </div>
           </div>
@@ -207,6 +210,10 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
   }
+  @media (max-width: 430px) {
+    margin: 0px 0px 0px 16%;
+    width: 85%;
+  }
 `;
 
 export const Info = styled.div`
@@ -273,6 +280,39 @@ export const Info = styled.div`
     }
     span {
       margin: -2px 0px 0px -6px;
+    }
+  }
+  @media (max-width: 430px) {
+    .Background {
+      height: 35vw;
+    }
+    .DPholder {
+      margin: -12.5vw 0px -22vw 0px;
+      .DP {
+        width: 25vw;
+        height: 25vw;
+        margin: 0px 0px 0px 2vw;
+      }
+      .BtnContainer {
+        margin: 15% 0px 0px 38%;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .bio {
+      h3 {
+        font-size: 5.2vw;
+      }
+      p {
+        font-size: 3.3vw;
+      }
+      .userhandle {
+        margin: -0.7vw 0px 3vw 0px;
+      }
+      span {
+        font-size: 3.8vw;
+        margin-left: 0px;
+      }
     }
   }
 `;

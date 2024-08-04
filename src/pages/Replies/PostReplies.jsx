@@ -211,6 +211,17 @@ export const Top = styled.div`
   .back {
     margin: 0px;
   }
+  @media (max-width: 430px) {
+    .heading {
+      margin: 0px 0px 0px 1vw;
+      font-size: 5vw;
+    }
+    .SpanBack {
+      margin: 0px 0px 0px 1vw;
+      width: 10vw;
+      height: 10vw;
+    }
+  }
 `;
 
 const Reply = styled.div`

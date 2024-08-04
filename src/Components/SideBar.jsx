@@ -110,7 +110,8 @@ const SideBarContainer = styled.div`
   margin-left: 100px;
   border-right: 1px solid #e7e7e7;
   @media (max-width: 430px) {
-    position: static;
+    position: fixed;
+    background-color: red;
     width: 15%;
     align-items: center;
     margin: 0px;

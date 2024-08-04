@@ -154,7 +154,10 @@ export default function UserProfile() {
                 $follow
                 onClick={followed ? handleunfollowuser : handlefollowuser}
               >
-                {followed ? "Unfollow" : "Follow"}
+                <p>{followed ? "Unfollow" : "Follow"}</p>
+                <span class="material-symbols-outlined">
+                  {followed ? "person_remove" : "person_add"}
+                </span>
               </Button>
             </div>
           </div>
