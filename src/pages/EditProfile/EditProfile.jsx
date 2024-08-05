@@ -141,6 +141,7 @@ export default function EditProfile() {
           <h1>Write your Bio</h1>
           <div className="inputContainer">
             <styles.Input
+              $editpage
               value={bio}
               onChange={(e) => {
                 setBio(e.target.value);
@@ -152,6 +153,7 @@ export default function EditProfile() {
           <p>&#40; maximum 14 characters &#41;</p>
           <div className="inputContainer">
             <styles.Input
+              $editpage
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -163,6 +165,7 @@ export default function EditProfile() {
           <p>&#40; country &#41;</p>
           <div className="inputContainer">
             <styles.Input
+              $editpage
               value={location}
               onChange={(e) => {
                 setLocation(e.target.value);
@@ -174,6 +177,7 @@ export default function EditProfile() {
           <p>&#40; DD MM YYYY &#41;</p>
           <div className="inputContainer">
             <styles.Input
+              $editpage
               value={dob}
               onChange={(e) => {
                 setDob(e.target.value);
@@ -185,6 +189,7 @@ export default function EditProfile() {
           <p>&#40; optional &#41;</p>
           <div className="inputContainer">
             <styles.Input
+              $editpage
               value={weblink}
               onChange={(e) => {
                 setWebLink(e.target.value);
@@ -194,10 +199,11 @@ export default function EditProfile() {
           </div>
           <div className="btnContainer">
             <styles.Button $follow onClick={handleSave}>
-              Save Changes
+              <p className="savetext">Save Changes</p>
+              <span class="material-symbols-outlined save">save</span>
             </styles.Button>
+            <div style={{ display: isloading }} className="loader"></div>
           </div>
-          <div style={{ display: isloading }} className="loader"></div>
         </Bottom>
       </Container>
     </>
@@ -250,6 +256,12 @@ const Bottom = styled.div`
     cursor: pointer;
     pointer-events: none;
   }
+  .savetext {
+    all: unset;
+  }
+  .save {
+    color: white;
+  }
   .dp {
     top: 128px;
     left: 44px;
@@ -269,11 +281,9 @@ const Bottom = styled.div`
     margin: 0px 0px 6px 22px;
   }
   .loader {
-    position: absolute;
-    bottom: -337px;
-    left: 237px;
+    margin: 0px 0px 0px 0px;
     width: 30px;
-    padding: 8px;
+    padding: 11px;
     aspect-ratio: 1;
     border-radius: 50%;
     background: #1d9bf0;
@@ -287,6 +297,55 @@ const Bottom = styled.div`
   @keyframes l3 {
     to {
       transform: rotate(1turn);
+    }
+  }
+  @media (max-width: 430px) {
+    h1 {
+      font-size: 4vw;
+      margin: 1.2vw 0vw 1.2vw 5.2vw;
+    }
+    p {
+      font-size: 2.8vw;
+      margin: 0px 0vw 0vw 5.2vw;
+    }
+    .savetext {
+      display: none;
+    }
+    .inputFile {
+      margin: 1.2vw 0px 1.2vw 5.2vw;
+      width: 18vw;
+      border-radius: 100px;
+    }
+    input::file-selector-button {
+      width: 18vw;
+      height: 18vw;
+      margin: 0px 5vw 0px 0px;
+    }
+    span {
+      font-size: 9vw;
+    }
+    .inputContainer {
+      display: flex;
+      margin: 0px 0px 1.2vw 5.2vw;
+      width: 60%;
+    }
+    .btnContainer {
+      align-items: center;
+      width: 100%;
+    }
+    .dp {
+      top: 27.3vw;
+      left: 10vw;
+    }
+    .cover {
+      top: 59.2vw;
+      left: 10vw;
+    }
+    .loader {
+      position: static;
+      width: 5vw;
+      height: 5vw;
+      padding: 4px;
     }
   }
 `;

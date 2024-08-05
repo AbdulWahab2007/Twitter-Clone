@@ -242,7 +242,7 @@ export const Input = styled.input`
     padding: 3px;
   }
   @media (max-width: 430px) {
-    height: 12vw;
+    height: ${(props) => (props.$editpage ? "9vw" : "12vw")};
     font-size: 4.5vw;
     &:focus + .placeholder {
       font-size: 3.7vw;

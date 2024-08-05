@@ -220,6 +220,7 @@ export const Info = styled.div`
   flex-direction: column;
   width: 100%;
   .Background {
+    object-fit: cover;
     width: 100%;
     background-color: #b4bec2;
     height: 205px;
