@@ -400,6 +400,10 @@ export const Button = styled.div`
       height: 5.4vw;
       margin-right: 2vw;
     }
+    .link {
+      height: 9vw;
+      width: 9vw;
+    }
     p {
       display: none;
     }

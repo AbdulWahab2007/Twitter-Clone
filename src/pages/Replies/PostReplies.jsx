@@ -145,11 +145,11 @@ export default function PostReplies() {
           ></textarea>
           <div className="btnContainer">
             <Button $post1 onClick={handlepostreply}>
-              Reply
+              <p>Reply</p>
+              <span class="material-symbols-outlined">send</span>
             </Button>
           </div>
         </Reply>
-        {/* Replies Here */}
         {tweetReplies.map((element, index) => {
           return (
             <PostCard
@@ -177,6 +177,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 430px) {
+    width: 85%;
+    margin: 0px 0px 0px 15%;
+  }
 `;
 export const Top = styled.div`
   display: flex;
@@ -256,5 +260,20 @@ const Reply = styled.div`
     justify-content: center;
     align-items: center;
     width: 50%;
+  }
+  @media (max-width: 430px) {
+    height: 17vw;
+    .DP {
+      width: 9vw;
+      height: 9vw;
+    }
+    textarea {
+      height: 14vw;
+      margin: 4vw 0px 0px 3vw;
+      font-size: 4.8vw;
+    }
+    .btnContainer {
+      width: 25%;
+    }
   }
 `;

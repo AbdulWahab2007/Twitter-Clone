@@ -155,7 +155,7 @@ export default function UserProfile() {
                 onClick={followed ? handleunfollowuser : handlefollowuser}
               >
                 <p>{followed ? "Unfollow" : "Follow"}</p>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                   {followed ? "person_remove" : "person_add"}
                 </span>
               </Button>

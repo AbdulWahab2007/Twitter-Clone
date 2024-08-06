@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 
 export default function RightBar() {
   const [users, setUsers] = useState([]);
-  const myID = localStorage.getItem("myID");
+  const myUsername = localStorage.getItem("username");
   const ShowUsers = () => {
     const response = axios
       .get("http://localhost:5000/api/user/randomuser")
       .then(function (response) {
-        const filteredUsers = response.data.filter((user) => user._id !== myID);
+        const filteredUsers = response.data.filter(
+          (user) => user.username !== myUsername
+        );
         setUsers(filteredUsers);
       });
   };

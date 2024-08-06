@@ -200,7 +200,7 @@ export default function EditProfile() {
           <div className="btnContainer">
             <styles.Button $follow onClick={handleSave}>
               <p className="savetext">Save Changes</p>
-              <span class="material-symbols-outlined save">save</span>
+              <span className="material-symbols-outlined save">save</span>
             </styles.Button>
             <div style={{ display: isloading }} className="loader"></div>
           </div>

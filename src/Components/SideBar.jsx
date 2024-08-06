@@ -92,8 +92,10 @@ export default function SideBar() {
           </Link>
         </Anchor>
         <Button $post>
-          <p>Post</p>
-          <span class="material-symbols-outlined">Draw</span>
+          <Link className="link" to={"/main/home"}>
+            <p>Post</p>
+            <span className="material-symbols-outlined">Draw</span>
+          </Link>
         </Button>
         <Popover dp={dp} name={name} username={"@" + username} />
       </SideBarContainer>

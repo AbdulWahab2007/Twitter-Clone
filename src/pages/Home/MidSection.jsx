@@ -132,7 +132,7 @@ export default function MidSection() {
             <div className="btncontainer">
               <Button $post1 onClick={handleposttweet}>
                 <p>Post</p>
-                <span class="material-symbols-outlined">Draw</span>
+                <span className="material-symbols-outlined">Draw</span>
               </Button>
             </div>
           </div>

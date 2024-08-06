@@ -104,7 +104,9 @@ export default function Profile() {
               <Link className="edit" to="/editprofile">
                 <Button $follow>
                   <p>Setup Profile</p>
-                  <span class="material-symbols-outlined">manage_accounts</span>
+                  <span className="material-symbols-outlined">
+                    manage_accounts
+                  </span>
                 </Button>
               </Link>
             </div>
