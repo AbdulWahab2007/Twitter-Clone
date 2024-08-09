@@ -14,9 +14,6 @@ export default function PostReplies() {
   };
   const { isLoggedin, setIsLoggedin, myDP } = useContext(Context);
   const localtoken = localStorage.getItem("token");
-  if (!isLoggedin) {
-    return <Navigate to="/" />;
-  }
   const [tweet, setTweet] = useState({
     hearts: [],
     retweets: [],

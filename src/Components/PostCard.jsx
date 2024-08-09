@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Context } from "/src/GlobalContext";
 import moment from "moment";
-import { toast } from "sonner";
 import axios from "axios";
 
 export default function PostCard(props) {
   const time = moment(props.date).fromNow();
-  const { isLoggedin, setIsLoggedin } = useContext(Context);
   const localtoken = localStorage.getItem("token");
   const localmyID = localStorage.getItem("myID");
   const [liked, setLiked] = useState(props.liked);
@@ -35,9 +32,6 @@ export default function PostCard(props) {
       coverPhoto: "/src/components/Icons/UserDP.svg",
     },
   });
-  if (!isLoggedin) {
-    return <Navigate to="/" />;
-  }
   const handlereplier = () => {
     const response = axios
       .get("http://localhost:5000/api/user/?userID=" + props.userID)

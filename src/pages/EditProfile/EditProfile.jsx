@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Top } from "../Replies/PostReplies";
 import { Link } from "react-router-dom";
 import * as styles from "/src/components/Dialog.jsx";
 import axios from "axios";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Context } from "/src/GlobalContext";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function EditProfile() {
+  const { isLoggedin, setIsLoggedin } = useContext(Context);
+  if (!isLoggedin) {
+    return <Navigate to="/" />;
+  }
   const [isloading, setIsloading] = useState("none");
   const [dp, setDp] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(null);
@@ -186,7 +191,7 @@ export default function EditProfile() {
             />
           </div>
           <h1>Any personal web link</h1>
-          <p>&#40; optional &#41;</p>
+          <p>&#40; optional & don't write "https://" in the beginning &#41;</p>
           <div className="inputContainer">
             <styles.Input
               $editpage

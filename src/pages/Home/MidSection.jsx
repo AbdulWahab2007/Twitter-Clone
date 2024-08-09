@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Dialog";
-import PostCard from "../../components/PostCard";
 import axios from "axios";
 import { Context } from "/src/GlobalContext";
 import { toast } from "sonner";

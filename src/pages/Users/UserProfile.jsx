@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Container, Info } from "../Profile/Profile";
 import { Top } from "../Replies/PostReplies";
@@ -6,7 +6,6 @@ import { TopCategories } from "../Home/MidSection";
 import PostCard from "../../components/PostCard";
 import { Button } from "../../components/Dialog";
 import axios from "axios";
-import { Context } from "/src/GlobalContext";
 import { toast } from "sonner";
 
 export default function UserProfile() {
@@ -178,7 +177,16 @@ export default function UserProfile() {
                   userData.additionalData.additionalData.website != "" ? (
                     <p className="row">
                       <span className="material-symbols-outlined">link</span>
-                      {userData.additionalData.additionalData.website}
+
+                      <Link
+                        to={
+                          "https://" +
+                          userData.additionalData.additionalData.website
+                        }
+                        target="_blank"
+                      >
+                        {userData.additionalData.additionalData.website}
+                      </Link>
                     </p>
                   ) : (
                     <></>

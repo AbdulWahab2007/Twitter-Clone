@@ -6,14 +6,7 @@ import MainSection from "./components/MainSection";
 import MidSection from "/src/pages/Home/MidSection";
 import PostReplies from "/src/pages/Replies/PostReplies";
 import Profile from "/src/pages/Profile/Profile";
-import {
-  BrowserRouter as Router,
-  BrowserRouter,
-  Route,
-  Routes,
-  Link,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Provider from "./GlobalContext";
 import UserProfile from "/src/pages/Users/UserProfile.jsx";
 import { Toaster } from "sonner";

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Top } from "../Replies/PostReplies";
@@ -6,7 +6,6 @@ import { Button } from "../../components/Dialog";
 import { TopCategories } from "../Home/MidSection";
 import PostCard from "../../components/PostCard";
 import axios from "axios";
-import { Context } from "/src/GlobalContext";
 
 export default function Profile() {
   const history = useNavigate();
@@ -127,7 +126,15 @@ export default function Profile() {
                   {myData.additionalData.additionalData.website ? (
                     <p className="row">
                       <span className="material-symbols-outlined">link</span>
-                      {myData.additionalData.additionalData.website}
+                      <Link
+                        to={
+                          "https://" +
+                          myData.additionalData.additionalData.website
+                        }
+                        target="_blank"
+                      >
+                        {myData.additionalData.additionalData.website}
+                      </Link>
                     </p>
                   ) : (
                     <></>
@@ -279,6 +286,9 @@ export const Info = styled.div`
     }
     .row {
       margin: 0px 20px 0px 0px;
+      a {
+        text-decoration: none;
+      }
     }
     span {
       margin: -2px 0px 0px -6px;
