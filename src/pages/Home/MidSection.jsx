@@ -4,9 +4,11 @@ import { Button } from "../../components/Dialog";
 import axios from "axios";
 import { Context } from "/src/GlobalContext";
 import { toast } from "sonner";
+import PostCard from "../../components/PostCard";
 
 export default function MidSection() {
   const [isActive, SetisActive] = useState(0);
+  const [homeTweets, setHomeTweets] = useState([]);
   const [text, setText] = useState("");
   const [dp, setDp] = useState("/src/components/Icons/UserDP.svg");
   const { token, setToken } = useContext(Context);
@@ -44,13 +46,24 @@ export default function MidSection() {
   };
   const handlenewsfeed = async () => {
     const data = {};
-    const response = axios
-      .get("http://localhost:5000/api/user/randomuser", data)
-      .then(function (response) {});
+    const response = await axios.post(
+      "http://localhost:5000/api/tweet/newsfeed",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localtoken,
+        },
+      }
+    );
+    if (response.status == 200) {
+      setHomeTweets(response.data);
+    }
   };
 
   useEffect(() => {
     handleuserdata();
+    handlenewsfeed();
   }, []);
   return (
     <>
@@ -136,7 +149,25 @@ export default function MidSection() {
             </div>
           </div>
         </PostSection>
-        <div className="PostContainer">{/* Postcards here */}</div>
+        <div className="PostContainer">
+          {homeTweets.map((element, index) => {
+            return (
+              <div key={index}>
+                <PostCard
+                  dp={element.userID[0].additionalData.profilePic}
+                  name={element.userID[0].additionalData.additionalData.name}
+                  username={"@" + element.userID[0].username}
+                  id={element._id}
+                  text={element.text}
+                  date={element.time}
+                  replies={element.replies.length}
+                  retweets={element.retweets.length}
+                  likes={element.hearts.length}
+                />
+              </div>
+            );
+          })}
+        </div>
       </Container>
     </>
   );
@@ -154,7 +185,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
   }
   @media (max-width: 430px) {
     margin: 0vw 0vw 0vw 15%;
